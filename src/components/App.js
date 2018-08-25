@@ -4,7 +4,6 @@ import { handleInitialData } from '../actions/shared'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { func, bool } from 'prop-types'
 
-import './App.css'
 import LoadingBar from 'react-redux-loading'
 import Login from './Login'
 import Nav from './Nav'
@@ -13,6 +12,7 @@ import QuestionSingle from './QuestionSingle'
 import AddQuestion from './AddQuestion'
 import LeaderBoard from './LeaderBoard'
 import NotFound from './NotFound'
+import './App.css'
 
 class App extends Component {
   static propTypes = {

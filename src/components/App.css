@@ -45,7 +45,21 @@ h6 { font-size: 1rem; }
 	position: relative;
 }
 
-.or:before,
+.loggedin {
+	display: flex;
+	align-items: center;
+}
+
+.loggedin-avatar {
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 50%;
+	margin: 0 0.5rem;
+}
+
+/* .or:before,
 .or:after {
 	content: '';
 	display: block;
@@ -61,7 +75,7 @@ h6 { font-size: 1rem; }
 
 .or:after {
 	right: 0; 
-}
+} */
 
 .main-navigation {
 	margin-bottom: 2rem;
@@ -69,6 +83,8 @@ h6 { font-size: 1rem; }
 
 .page-content {
 	padding: 0 2rem;
+	max-width: 50rem;
+	margin: 0 auto 4rem;
 }
 
 .card {

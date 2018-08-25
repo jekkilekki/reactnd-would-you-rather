@@ -16,6 +16,6 @@ export function formatQuestion( question, author, authedUser ) {
 		optionTwo,
 		avatar: avatarURL,
 		answers: answers.length,
-		hasAnswered: answers.includes(authedUser),
+		// hasAnswered: answers.includes(authedUser),
 	}
 }
