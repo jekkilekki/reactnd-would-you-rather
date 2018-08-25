@@ -44,7 +44,7 @@ class Login extends Component {
 		}
 
 		return (
-			<section className='page-content'>
+			<section className='page-content login-page'>
 				<form 
 					className='login card'
 					onSubmit={this.handleSubmit}	
