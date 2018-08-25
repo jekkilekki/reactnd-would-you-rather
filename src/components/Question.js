@@ -42,7 +42,7 @@ class Question extends Component {
 		const { id, name, avatar, answers, timestamp, optionOne, optionTwo, votes, text } = question
 		
 		return (
-			<div className='question card'>
+			<div className='question card hoverable'>
 				<div 
 					style={{backgroundImage: `url(${avatar})`}}
 					alt={`Avatar of ${name}`}

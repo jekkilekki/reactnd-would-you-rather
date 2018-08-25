@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import User from './User'
+import User from './User'
 
 class LeaderBoard extends Component {
 	render() {
-		return (
-			<div>
+		const { users } = this.props
 
-			</div>
+		return (
+			<section className='page-content'>
+				<h2 className='center'>Leaderboard</h2>
+				<ul className='leaderboard-list'>
+					{this.props.userIds.map((id) => (
+						<li key={id} className={`user-${id}`}>
+							<User id={id} />
+						</li>
+					))}
+				</ul>
+			</section>
 		)
 	}
 }
 
-function mapStateToProps() {
-
+function mapStateToProps({ users, questions }) {
+	return {
+		userIds: Object.keys(users)
+	}
 }
 
-export default connect()(LeaderBoard)
+export default connect(mapStateToProps)(LeaderBoard)

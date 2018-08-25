@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { SideNav, SideNavItem, Button } from 'react-materialize'
 
 class Nav extends Component {
 	render() {
@@ -11,9 +12,6 @@ class Nav extends Component {
 			<Fragment>
 				<nav className='nav main-navigation teal'>
 					<div className='nav-wrapper'>
-						<a data-target='mobile-demo' className='sidenav-trigger'>
-							<i className='material-icons'>menu</i>
-						</a>
 						<ul className='hide-on-med-and-down'>
 							<li>
 								<Link to='/'>Dashboard</Link>
@@ -26,6 +24,24 @@ class Nav extends Component {
 							</li>
 						</ul>
 
+						<SideNav className='sidenav teal'
+							trigger={<i className='sidenav-trigger material-icons hide-on-large-only'>menu</i>}
+							options={{ closeOnClick: true }}
+							>
+							<SideNavItem>
+								<i className='material-icons'>close</i>
+							</SideNavItem>
+							<SideNavItem>
+								<Link to='/'>Dashboard</Link>
+							</SideNavItem>
+							<SideNavItem>
+								<Link to='/new'>New Question</Link>
+							</SideNavItem>
+							<SideNavItem>
+								<Link to='/leaderboard'>Leaderboard</Link>
+							</SideNavItem>
+						</SideNav>
+
 						<div className='loggedin right'>
 							<span>Logged in as</span>
 							<div 
@@ -37,12 +53,6 @@ class Nav extends Component {
 						</div>
 					</div>
 				</nav>
-
-				<ul className='sidenav' id='mobile-demo'>
-					<li><Link to='/'>Dashboard</Link></li>
-					<li><Link to='/new'>New Question</Link></li>
-					<li><Link to='/leaderboard'>Leaderboard</Link></li>
-				</ul>
 			</Fragment>
 		)
 	}
