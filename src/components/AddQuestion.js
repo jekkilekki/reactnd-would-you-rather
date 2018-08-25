@@ -29,39 +29,44 @@ class AddQuestion extends Component {
 	}
 
 	render() {
-		const { optionA, optionB } = this.state
+		const { optionOne, optionTwo } = this.state
 
 		{/* Redirect to home view after submit */}
 
 		return (
-			<div>
-				<h3 className='center'>Ask a Question</h3>
-				<h4 className='center'>Would you rather...?</h4>
-				<form className='add-question-form' onSubmit={this.handleSubmit}>
-					<input
-						placeholder='Option A'
-						value={optionA}
-						onChange={this.handleChange}
-						className='option-input'
-						maxLength={100}
-					/>
-					<h5 className='center or'>or</h5>
-					<input
-						placeholder='Option B'
-						value={optionB}
-						onChange={this.handleChange}
-						className='option-input'
-						maxLength={100}
-					/>
-					<button
-						className='btn'
-						type='submit'
-						disabled={ '' === optionA || '' === optionB }
+			<section className='page-content'>
+				<h1 className='center'>Ask a Question</h1>
+				<div class='card'>
+					<h4 className='center'>Would you rather...?</h4>
+					<form 
+						className='add-question-form' 
+						onSubmit={this.handleSubmit}
 					>
-					Ask Question
-					</button>
-				</form>
-			</div>
+						<input
+							placeholder='Option One'
+							value={optionOne}
+							onChange={this.handleChange}
+							className='option-input'
+							maxLength={100}
+						/>
+						<h4 className='center or'>or</h4>
+						<input
+							placeholder='Option Two'
+							value={optionTwo}
+							onChange={this.handleChange}
+							className='option-input'
+							maxLength={100}
+						/>
+						<button
+							className='btn waves-effect waves-light'
+							type='submit'
+							disabled={ '' === optionOne || '' === optionTwo }
+						>
+						Ask Question
+						</button>
+					</form>
+				</div>
+			</section>
 		)
 	}
 }

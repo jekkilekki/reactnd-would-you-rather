@@ -10,8 +10,8 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<h3 className='center'>Your Questions</h3>
+			<section className='page-content'>
+				<h2 className='center'>Your Questions</h2>
 				<ul className='dashboard-question-list'>
 					{this.props.questionIds.map((id) => (
 						<li key={id} className={`question-${id}`}>
@@ -19,7 +19,7 @@ class Dashboard extends Component {
 						</li>
 					))}
 				</ul>
-			</div>
+			</section>
 		)
 	}
 }

@@ -26,3 +26,62 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Noto Sans', sans-serif;
+	font-weight: bold;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+
+.or {
+	background: white;
+	padding: 0 10px;
+	position: relative;
+}
+
+.or:before,
+.or:after {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 45%;
+	border-bottom: 1px solid #ddd;
+	top: 12px;
+}
+
+.or:before {
+	left: 0;
+}
+
+.or:after {
+	right: 0; 
+}
+
+.main-navigation {
+	margin-bottom: 2rem;
+}
+
+.page-content {
+	padding: 0 2rem;
+}
+
+.card {
+	padding: 1rem 2rem;
+}
+
+.btn {
+	display: block;
+	margin: 1rem auto;
+}
+
+/* MaterializeCSS sets this to none by default */
+select {
+	display: block;
+	margin-bottom: 1rem;
+}
