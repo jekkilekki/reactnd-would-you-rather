@@ -1,21 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
+import './App.css'
+
+import Login from './Login'
+import Dashboard from './Dashboard'
+import QuestionSingle from './QuestionSingle'
+import AddQuestion from './AddQuestion'
+import LeaderBoard from './LeaderBoard'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch( handleInitialData() )
+  }
+
   render() {
+    const { loading } = this.props
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <LoadingBar />
+        {loading
+          ? null
+          : <Dashboard />
+        }
       </div>
-    );
+    )
   }
 }
 
-export default App;
+function mapStateToProps({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
