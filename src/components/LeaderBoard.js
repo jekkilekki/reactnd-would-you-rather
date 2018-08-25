@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import User from './User'
+// import User from './User'
 
 class LeaderBoard extends Component {
-    render() {
-        return (
-            <div>
+	render() {
+		return (
+			<div>
 
-            </div>
-        )
-    }
+			</div>
+		)
+	}
 }
 
 function mapStateToProps() {
 
 }
 
-export default connect(mapStateToProps)(LeaderBoard)
+export default connect()(LeaderBoard)

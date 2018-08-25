@@ -7,13 +7,13 @@ import reducer from './reducers'
 import middleware from './middleware'
 
 import './index.css'
-import App from '.components/App'
+import App from './components/App'
 
 const store = createStore(reducer, middleware)
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-    document.getElementById('root')
+	<Provider store={store}>
+		<App />
+	</Provider>, 
+	document.getElementById('root')
 )
