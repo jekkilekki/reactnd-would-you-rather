@@ -30,8 +30,8 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar />
-          {loading
-            ? null
+          { loading
+            ? <Login />
             : (
               <main className="app app-container">
                 <Nav />
@@ -40,7 +40,6 @@ class App extends Component {
                   <Route path="/new" component={AddQuestion} />
                   <Route path="/question/:id" component={QuestionSingle} />
                   <Route path="/leaderboard" component={LeaderBoard} />
-                  <Route path="/login" component={Login} />
                   <Route component={NotFound} />
                 </Switch>
               </main>

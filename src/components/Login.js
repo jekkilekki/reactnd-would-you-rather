@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
-import Dashboard from './Dashboard'
+import { Dropdown, NavItem } from 'react-materialize'
+import Nav from './Nav'
 
 class Login extends Component {
 	state = {
@@ -29,63 +30,58 @@ class Login extends Component {
 		})
 	}
 
+	handleSelect = (e) => {
+		console.log(e.target.id)
+		this.props.dispatch( setAuthedUser( e.target.id ) )
+	}
+
 	render() {
 		const { users, authedUser } = this.props
-		const { id, loggedIn } = this.state
-		const userInfo = users.map((user) => ({
-			text: user.name,
-			value: user.id,
-			image: {avatar: true, src: user.avatarURL},
-			key: user.id
-		}))
 
-		if ( loggedIn ) {
-			return <Redirect to='/' exact component={Dashboard} />
+		if ( authedUser ) {
+			return <Redirect to='/' />
 		}
 
 		return (
+			<Fragment>
+				{ ! authedUser && <Nav /> }
 			<section className='page-content login-page'>
 				<form 
 					className='login card'
 					onSubmit={this.handleSubmit}	
 				>
 					<h1 className='page-title center'>Login</h1>
-					<select id='user-select'>
+					<Dropdown trigger={
+						<div className='login-dropdown user-select'>Select User</div>
+					}>
 						{users.map((user) => (
-							<option value={user.id}>{user.name}</option>
+							<NavItem 
+								key={user.id}
+								id={user.id} 
+								className={`login-dropdown ${user.id}`}
+								onClick={this.handleSelect}>
+								<div id={user.id}>
+									<div 
+										style={{backgroundImage: `url(${user.avatarURL})`}} 
+										title={user.name} 
+										className='avatar'>
+									</div>
+									<span className='user'>{user.name}</span>
+								</div>
+							</NavItem>
 						))}
-					</select>
+					</Dropdown>
 					<button
 						className='btn waves-effect waves-light'
 						type='submit'
-						disabled={ '' === authedUser }
+						disabled={ null === authedUser }
 					>
 					Login
 					</button>
 					<p className='center'>Not a member yet? <a href="#">Sign up</a></p>
 				</form>
-
-				{/* <form 
-					className='login card'
-					onSubmit={this.handleSubmit}	
-				>
-					<h1 className='page-title center'>Sign up</h1>
-					<input
-						placeholder='Username'
-						onChange={this.handleChange} />
-					<input
-						placeholder='Full Name'
-						onChange={this.handleChange} />
-					<button
-						className='btn waves-effect waves-light'
-						type='submit'
-						disabled={ '' === uname || '' === fname }
-					>
-					Sign up
-					</button>
-					<p className='center'>Already a member? <a href="#">Login</a></p>
-				</form> */}
 			</section>
+			</Fragment>
 		)
 	}
 }

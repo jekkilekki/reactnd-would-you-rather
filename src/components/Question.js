@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
-// import TiArrowBackOutline from 'react-icons/lib/ti/arrow-back-outline'
 import { handleAnswerQuestion } from '../actions/questions'
 import './Question.css'
 
@@ -11,7 +9,7 @@ class Question extends Component {
 	static propTypes = {
 		question: object.isRequired,
 		dispatch: func.isRequired,
-		history: object.isRequired,
+		history: object,
 		authedUser: string.isRequired
 	}
 
@@ -32,26 +30,30 @@ class Question extends Component {
 	}
 
 	render() {
-		const { question } = this.props
-		console.log( "Question: ", question )
+		const { question, authedUser } = this.props
+
 		if ( null === question ) {
 			return <p>This question doesn't exist.</p>
 		}
 
-		// const { name, avatarURL, answers, questions } = user
 		const { id, name, avatar, answers, timestamp, optionOne, optionTwo, votes, text } = question
-		
+
 		return (
 			<div className='question card hoverable'>
-				<div 
-					style={{backgroundImage: `url(${avatar})`}}
-					alt={`Avatar of ${name}`}
-					className='avatar'
-				></div>
-				<div className='question-meta'>
-					<span className='timestamp'>{/*formatDate(timestamp)*/}</span>
-					<span className='author'>{name}</span> asks <span className='question-text'>"Would you rather...?"</span>
-				</div>
+				<header>
+					<div 
+						style={{backgroundImage: `url(${avatar})`}}
+						alt={`Avatar of ${name}`}
+						className='avatar'
+					>
+						{ authedUser === {id} &&
+							<span className='current-user'></span>
+						}
+					</div>
+					<div className='question-meta'>
+						<span className='author'>{name}</span> asks <span className='question-text'>"Would you rather...?"</span>
+					</div>
+				</header>
 				<div className='options'>
 					<div
 						className='btn waves-effect waves-light options optionOne'
@@ -65,10 +67,10 @@ class Question extends Component {
 						{optionTwo.text}
 					</div>
 				</div>
-				<div className='question-icons'>
-					{/* <TiArrowBackOutline className='return-to-dashboard' /> */}
-					<span>{answers !== 0 && answers}</span>
-				</div>
+				<footer className='question-meta'>
+					<span className='answers'>{answers !== undefined && answers.length} Answers</span>
+					<span className='timestamp'>{formatDate(timestamp)}</span>
+				</footer>
 			</div>
 		)
 	}

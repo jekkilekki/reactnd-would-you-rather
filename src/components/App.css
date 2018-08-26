@@ -63,6 +63,39 @@ h6 { font-size: 1rem; }
 	min-width: 30rem;
 }
 
+.login-dropdown .avatar {
+	float: left;
+	margin-right: 1rem;
+	width: 30px;
+	height: 30px;
+}
+
+.login-dropdown .user {
+	line-height: 30px;
+}
+
+.login-dropdown.dropdown-button {
+	line-height: 30px;
+	border: 1px solid #e0e3e3;
+	padding: 5px 10px;
+	position: relative;
+}
+
+.login-dropdown.dropdown-button:after {
+	content: '\25bc';
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	line-height: 30px;
+}
+
+.logout-button:hover,
+.logout-button:active,
+.logout-button:focus {
+	cursor: pointer;
+}
+
 .loggedin {
 	display: flex;
 	align-items: center;

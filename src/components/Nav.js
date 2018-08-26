@@ -1,9 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
 import { Link } from 'react-router-dom'
 import { SideNav, SideNavItem, Button } from 'react-materialize'
 
 class Nav extends Component {
+	logout = () => {
+		this.props.dispatch( setAuthedUser( null ) )
+	}
+
 	render() {
 		const { authedUser, users } = this.props
 		const loggedinUser = users[authedUser]
@@ -11,6 +16,7 @@ class Nav extends Component {
 		return (
 			<Fragment>
 				<nav className='nav main-navigation teal'>
+					{ authedUser && 
 					<div className='nav-wrapper'>
 						<ul className='hide-on-med-and-down'>
 							<li>
@@ -49,9 +55,12 @@ class Nav extends Component {
 								title={loggedinUser.name}
 								style={{backgroundImage: `url(${loggedinUser.avatarURL})`}} 
 							></div>
-							<span><Link to='/login'>Logout</Link></span>
+							<span className='logout-button' onClick={this.logout}>
+								Logout
+							</span>
 						</div>
 					</div>
+					}
 				</nav>
 			</Fragment>
 		)
