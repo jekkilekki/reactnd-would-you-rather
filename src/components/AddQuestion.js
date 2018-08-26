@@ -36,7 +36,7 @@ class AddQuestion extends Component {
 		return (
 			<section className='page-content'>
 				<h1 className='center'>Ask a Question</h1>
-				<div class='card'>
+				<div class='question card'>
 					<h4 className='center'>Would you rather...?</h4>
 					<form 
 						className='add-question-form' 

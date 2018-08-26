@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
+          <LoadingBar style={{backgroundColor: '#9c27b0', height: '5px'}} />
           { loading
             ? <Login />
             : (

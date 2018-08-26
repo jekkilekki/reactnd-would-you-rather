@@ -30,28 +30,33 @@ class Question extends Component {
 	}
 
 	render() {
-		const { question, authedUser } = this.props
+		const { question, user, authedUser } = this.props
+		console.log( "User: ", user )
 
 		if ( null === question ) {
 			return <p>This question doesn't exist.</p>
 		}
 
-		const { id, name, avatar, answers, timestamp, optionOne, optionTwo, votes, text } = question
+		const { name, avatar, timestamp, optionOne, optionTwo, votes, text } = question
+		const { answers, questions } = user
 
 		return (
-			<div className='question card hoverable'>
+			<div className={'question card hoverable ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
 				<header>
 					<div 
 						style={{backgroundImage: `url(${avatar})`}}
 						alt={`Avatar of ${name}`}
-						className='avatar'
+						className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
 					>
-						{ authedUser === {id} &&
-							<span className='current-user'></span>
-						}
 					</div>
 					<div className='question-meta'>
-						<span className='author'>{name}</span> asks <span className='question-text'>"Would you rather...?"</span>
+						{ authedUser === user.id && 
+							<span className='author'><strong>You</strong> asked</span>
+						}
+						{ authedUser !== user.id && 
+							<span className='author'><strong>{name}</strong> asks </span>
+						}
+						<span className='question-text'>"Would you rather...?"</span>
 					</div>
 				</header>
 				<div className='options'>
@@ -68,7 +73,10 @@ class Question extends Component {
 					</div>
 				</div>
 				<footer className='question-meta'>
-					<span className='answers'>{answers !== undefined && answers.length} Answers</span>
+					<span className='answers'>
+						{ authedUser === user.id && <i className='material-icons'>check</i>}
+						{answers !== undefined && answers.length} Answers
+					</span>
 					<span className='timestamp'>{formatDate(timestamp)}</span>
 				</footer>
 			</div>
@@ -80,6 +88,7 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
 	const question = questions[id]
 	return {
 		authedUser,
+		user: users[question.author],
 		question: question
 			? formatQuestion( question, users[question.author], authedUser )
 			: null

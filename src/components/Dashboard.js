@@ -14,7 +14,12 @@ class Dashboard extends Component {
 
 		return (
 			<section className='page-content'>
-				<h2 className='center'>Your Questions</h2>
+				<h2 className='center'>All Questions</h2>
+				<ul className='tabs card'>
+					<li className='tab active'>All</li>
+					<li className='tab'>Answered</li>
+					<li className='tab'>Unanswered</li>
+				</ul>
 				<ul className='dashboard-list'>
 					{this.props.questionIds.map((id) => (
 						<li key={id} className={`question-${id}`}>

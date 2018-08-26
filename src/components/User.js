@@ -12,22 +12,34 @@ class User extends Component {
 	// }
 
 	render() {
-		const { user } = this.props
+		const { user, authedUser } = this.props
 
 		const { name, avatarURL, answers, questions } = user
 		
 		return (
-			<div className='user card'>
+			<div className={'user card ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
 				<div 
 					style={{backgroundImage: `url(${avatarURL})`}}
 					alt={`Avatar of ${name}`}
-					className='avatar'
+					className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
 				></div>
+        <h4 className='author center'>{name}
+          { authedUser === user.id && <small><em> (That's you!)</em></small> }
+        </h4>
+        <p className='question-meta-title'>Questions</p>
 				<div className='question-meta'>
-          <h4 className='author'>{name}</h4>
-					<div className='answered'>Questions answered: {Object.keys(answers).length}</div>
-					<div className='created'>Questions created: {questions.length}</div>
-          <div className='score'>Total score: {Object.keys(answers).length + questions.length}</div>
+					<div className='answered teal lighten-2'>
+            <p>Answered:</p>
+            <h2>{Object.keys(answers).length}</h2>
+          </div>
+					<div className='created teal lighten-3'>
+            <p>Created:</p>
+            <h2>{questions.length}</h2>
+          </div>
+          <div className='score purple lighten-2'>
+            <p>Score:</p>
+            <h2>{Object.keys(answers).length + questions.length}</h2>
+          </div>
 				</div>
 			</div>
 		)

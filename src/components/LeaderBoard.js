@@ -21,7 +21,7 @@ class LeaderBoard extends Component {
 	}
 }
 
-function mapStateToProps({ users, questions }) {
+function mapStateToProps({ users }) {
 	return {
 		userIds: Object.keys(users)
 	}
