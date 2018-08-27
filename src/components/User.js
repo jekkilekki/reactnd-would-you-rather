@@ -12,9 +12,18 @@ class User extends Component {
 	// }
 
 	render() {
-		const { user, authedUser, rank } = this.props
-
+		const { user, authedUser, rank, options } = this.props
 		const { name, avatarURL, answers, questions } = user
+
+		if ( options === 'picture-only' ) {
+			return (
+				<div 
+					style={{backgroundImage: `url(${avatarURL})`}}
+					alt={`Avatar of ${name}`}
+					className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
+				></div>
+			)
+		}
 		
 		return (
 			<div className={'user card ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>

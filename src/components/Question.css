@@ -131,3 +131,13 @@ footer.question-meta .answers {
   float: right;
   padding: 3px 1rem;
 }
+
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.options-container .avatar {
+  margin: 0 1rem;
+}

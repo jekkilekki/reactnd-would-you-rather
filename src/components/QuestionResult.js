@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { handleAnswerQuestion } from '../actions/questions'
+import User from './User'
 import './Question.css'
 
 class QuestionResult extends Component {
@@ -18,7 +19,29 @@ class QuestionResult extends Component {
 
 		return (
 			<div className='question card z-depth-0'>
-        Vote Distribution
+        <h3 className='section-title'>Vote Distribution</h3>
+        <div className='options-container'>
+          <div className='optionOne-list-container'>
+            <p className='optionOne-text teal-text'>{question.optionOne.text}</p>
+            <ul className='optionOne-list'>
+              {question.optionOne.votes.map((id) => (
+                <li key={id}>
+                  <User id={id} options='picture-only' />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className='optionTwo-list-container'>
+            <p className='optionOne-text purple-text'>{question.optionTwo.text}</p>
+            <ul className='optionTwo-list'>
+            { question.optionTwo.votes.map((id) => (
+                <li key={id}>
+                  <User id={id} options='picture-only' />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 			</div>
 		)
 	}
