@@ -12,12 +12,13 @@ class User extends Component {
 	// }
 
 	render() {
-		const { user, authedUser } = this.props
+		const { user, authedUser, rank } = this.props
 
 		const { name, avatarURL, answers, questions } = user
 		
 		return (
 			<div className={'user card ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
+				<span className='rank'>{rank}</span>
 				<div 
 					style={{backgroundImage: `url(${avatarURL})`}}
 					alt={`Avatar of ${name}`}

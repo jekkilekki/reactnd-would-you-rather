@@ -34,9 +34,26 @@ class Dashboard extends Component {
 	}
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, authedUser }, { type }) {
+	let sortedQuestions = {}
+	switch(type) {
+		case 'answered':
+			sortedQuestions = Object.keys(questions)
+				.filter((id) => questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.includes(authedUser))
+			break;
+		case 'unanswered':
+			sortedQuestions = Object.keys(questions)
+				.filter((id) => ! questions[id].optionOne.votes.includes(authedUser) && ! questions[id].optionTwo.includes(authedUser))
+			break;
+		case 'mine':
+			sortedQuestions = Object.keys(questions)
+				.filter((id) => questions[id].author === authedUser)
+			break;
+		default:
+			sortedQuestions = Object.keys(questions)
+	}
 	return {
-		questionIds: Object.keys(questions)
+		questionIds: sortedQuestions
 			.sort((a,b) => questions[b].timestamp - questions[a].timestamp),
 	}
 }

@@ -78,3 +78,56 @@ footer.question-meta .answers {
   vertical-align: sub;
   color:  #009688;
 }
+
+.z-depth-0 .btn {
+  box-shadow: none;
+}
+
+.status {
+  color: black;
+  position: absolute;
+}
+
+.your-answer {
+  position: absolute;
+}
+
+.your-answer i {
+  font-size: 2rem;
+}
+
+.optionOne .your-answer {
+  left: 0rem;
+}
+
+.optionTwo .your-answer {
+  right: 0rem;
+}
+
+.results {
+  margin-bottom: 1rem;
+}
+
+.results h3 {
+  color: black;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.results p {
+  color: white;
+  padding: 3px 10px;
+  margin: 5px 0;
+}
+
+.result-score {
+  font-weight: bold;
+  float: right;
+}
+
+.result-votes {
+  font-size: 0.8rem;
+  /* text-transform: uppercase; */
+  float: right;
+  padding: 3px 1rem;
+}

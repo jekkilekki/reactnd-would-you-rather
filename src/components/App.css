@@ -1,34 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 body {
-	background: #e0e3e3;
+	background: #cfd8dc;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -114,24 +85,6 @@ h6 { font-size: 1rem; }
 	margin: 0 0.5rem;
 }
 
-/* .or:before,
-.or:after {
-	content: '';
-	display: block;
-	position: absolute;
-	width: 45%;
-	border-bottom: 1px solid #ddd;
-	top: 12px;
-}
-
-.or:before {
-	left: 0;
-}
-
-.or:after {
-	right: 0; 
-} */
-
 .main-navigation {
 	margin-bottom: 2rem;
 }
@@ -152,6 +105,7 @@ h6 { font-size: 1rem; }
 
 .tabs .tab {
 	text-transform: capitalize;
+	padding: 0 2rem;
 }
 
 .tab.active {
@@ -185,4 +139,9 @@ select {
 
 .user .question-meta h2 {
 	margin-top: 0;
+}
+
+.score p {
+	/* text-transform: uppercase; */
+	font-weight: bold;
 }

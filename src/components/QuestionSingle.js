@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import AddQuestion from './AddQuestion'
+import QuestionResult from './QuestionResult'
 
 class QuestionSingle extends Component {
 	render() {
@@ -9,14 +9,7 @@ class QuestionSingle extends Component {
 		return (
 			<section className='page-content'>
 				<Question id={id} />
-				<AddQuestion id={id} />
-				{/* <ul className='question-list'>
-					{answers.map((answerId) => (
-						<li key={answerId}>
-							<Question id={answerId} />
-						</li>
-					))}
-				</ul> */}
+				<QuestionResult id={id} />
 			</section>
 		)
 	}
