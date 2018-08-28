@@ -9,13 +9,27 @@ class LeaderBoard extends Component {
 		return (
 			<section className='page-content'>
 				<h2 className='center'>Leaderboard</h2>
-				<ul className='leaderboard-list'>
+				<table className='leaderboard-table card highlight responsive-table'>
+					<thead>
+						<tr className='blue-grey lighten-5'>
+							<th className='leaderboard-rank' title='Rank'>Rank</th>
+							<th className='leaderboard-user'>Member name</th>
+							<th className='leaderboard-answered' title='Questions answered'><i class='material-icons'>check</i></th>
+							<th className='leaderboard-asked' title='Questions asked'><i class='material-icons'>help_outline</i></th>
+							<th className='leaderboard-score' title='Total score'><i class='material-icons'>star</i></th>
+						</tr>
+					</thead>
+					<tbody>
 					{this.props.userIds.map((id, i) => (
-						<li key={id} className={`user-${id}`}>
-							<User id={id} rank={i+1} />
-						</li>
+						<User 
+							id={id} 
+							key={id} 
+							className={`user-${id}`} 
+							rank={i+1} 
+						/>
 					))}
-				</ul>
+					</tbody>
+				</table>
 			</section>
 		)
 	}

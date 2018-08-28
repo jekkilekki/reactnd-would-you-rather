@@ -26,32 +26,30 @@ class User extends Component {
 		}
 		
 		return (
-			<div className={'user card ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
-				<span className='rank'>{rank}</span>
-				<div 
-					style={{backgroundImage: `url(${avatarURL})`}}
-					alt={`Avatar of ${name}`}
-					className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
-				></div>
-        <h4 className='author center'>{name}
-          { authedUser === user.id && <small><em> (That's you!)</em></small> }
-        </h4>
-        <p className='question-meta-title'>Questions</p>
-				<div className='question-meta'>
-					<div className='answered teal lighten-2'>
-            <p>Answered:</p>
-            <h2>{Object.keys(answers).length}</h2>
-          </div>
-					<div className='created teal lighten-3'>
-            <p>Created:</p>
-            <h2>{questions.length}</h2>
-          </div>
-          <div className='score purple lighten-2'>
-            <p>Score:</p>
-            <h2>{Object.keys(answers).length + questions.length}</h2>
-          </div>
-				</div>
-			</div>
+			<tr className={'user ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
+				<td className='leaderboard-rank rank'>
+					{rank}
+				</td>
+				<td className='leaderboard-user'>
+					<div 
+						style={{backgroundImage: `url(${avatarURL})`}}
+						alt={`Avatar of ${name}`}
+						className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
+					></div>
+					<p className='author'>{name}
+						{ authedUser === user.id && <small><em> (That's you!)</em></small> }
+					</p>
+				</td>
+				<td className='leaderboard-answered answered teal lighten-2'>
+					{Object.keys(answers).length}
+				</td>
+				<td className='leaderboard-asked created teal lighten-3'>
+					{questions.length}
+				</td>
+				<td className='leaderboard-score score purple lighten-2'>
+					{Object.keys(answers).length + questions.length}
+				</td>
+			</tr>
 		)
 	}
 }

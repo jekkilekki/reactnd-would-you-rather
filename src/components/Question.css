@@ -1,4 +1,4 @@
-.current-user {
+not(.leaderboard-table) .current-user {
   border: 5px solid #b2dfdb;
   /* background: #e0f2f1; */
 }
@@ -145,4 +145,30 @@ footer.question-meta .answers {
 
 .options-container .avatar {
   margin: 0 1rem;
+}
+
+/* Leaderboard */
+.leaderboard-user .avatar,
+.leaderboard-user .author {
+  float: left;
+  margin: 0;
+}
+
+.leaderboard-rank,
+.leaderboard-answered,
+.leaderboard-asked,
+.leaderboard-score  {
+  text-align: center;
+}
+
+td.leaderboard-answered,
+td.leaderboard-asked,
+td.leaderboard-score {
+  font-size: 1.2rem;
+  width: 80px;
+}
+
+td.leaderboard-score {
+  font-weight: bold;
+  color: white;
 }
