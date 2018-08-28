@@ -20,7 +20,10 @@ class Nav extends Component {
 					<div className='nav-wrapper'>
 						<ul className='hide-on-med-and-down'>
 							<li>
-								<Link to='/'>Dashboard</Link>
+								<Link to='/'><i className='material-icons'>home</i></Link>
+							</li>
+							<li>
+								<Link to='/dashboard/all'>Dashboard</Link>
 							</li>
 							<li>
 								<Link to='/new'>New Question</Link>
@@ -38,7 +41,10 @@ class Nav extends Component {
 								<i className='material-icons'>close</i>
 							</SideNavItem>
 							<SideNavItem>
-								<Link to='/'>Dashboard</Link>
+								<Link to='/'><i className='material-icons home-link'>home</i></Link>
+							</SideNavItem>
+							<SideNavItem>
+								<Link to='/dashboard/all'>Dashboard</Link>
 							</SideNavItem>
 							<SideNavItem>
 								<Link to='/new'>New Question</Link>

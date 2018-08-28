@@ -20,6 +20,11 @@ h6 { font-size: 1rem; }
 	}
 }
 
+nav i.material-icons.home-link {
+	line-height: 48px!important;
+	height: 48px!important;
+}
+
 .or {
 	background: white;
 	padding: 0 10px;
@@ -99,13 +104,27 @@ h6 { font-size: 1rem; }
 	padding: 1rem 2rem;
 }
 
+.tabs {
+	flex-wrap: wrap;
+}
+
 .tabs.card {
 	padding: 0;
+}
+
+a.tab {
+	color: black;
 }
 
 .tabs .tab {
 	text-transform: capitalize;
 	padding: 0 2rem;
+}
+
+@media screen and (max-width: 30rem) {
+	.tabs .tab {
+		padding: 0 1rem;
+	}
 }
 
 .tab.active {

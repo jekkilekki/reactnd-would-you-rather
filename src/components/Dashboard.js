@@ -10,15 +10,28 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const { questionIds, answers } = this.props 
+		const { history } = this.props 
 
 		return (
 			<section className='page-content'>
 				<h2 className='center'>All Questions</h2>
 				<ul className='tabs card'>
-					<li className='tab active'>All</li>
-					<li className='tab'>Answered</li>
-					<li className='tab'>Unanswered</li>
+					<Link to='/dashboard/all' 
+						className={'tab' + (history.location.pathname === '/dashboard/all' ? ' active' : '')}>
+						All
+					</Link>
+					<Link to='/dashboard/answered' 
+						className={'tab' + (history.location.pathname === '/dashboard/answered' ? ' active' : '')}>
+						Answered
+					</Link>
+					<Link to='/dashboard/unanswered' 
+						className={'tab' + (history.location.pathname === '/dashboard/unanswered' ? ' active' : '')}>
+						Unanswered
+					</Link>
+					<Link to='/dashboard/my-questions' 
+						className={'tab' + (history.location.pathname === '/dashboard/my-questions' ? ' active' : '')}>
+						Mine
+					</Link>
 				</ul>
 				<ul className='dashboard-list'>
 					{this.props.questionIds.map((id) => (
@@ -34,18 +47,18 @@ class Dashboard extends Component {
 	}
 }
 
-function mapStateToProps({ questions, authedUser }, { type }) {
+function mapStateToProps({ questions, authedUser }, { history }) {
 	let sortedQuestions = {}
-	switch(type) {
-		case 'answered':
+	switch(history.location.pathname) {
+		case '/dashboard/answered':
 			sortedQuestions = Object.keys(questions)
-				.filter((id) => questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.includes(authedUser))
+				.filter((id) => questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser))
 			break;
-		case 'unanswered':
+		case '/dashboard/unanswered':
 			sortedQuestions = Object.keys(questions)
-				.filter((id) => ! questions[id].optionOne.votes.includes(authedUser) && ! questions[id].optionTwo.includes(authedUser))
+				.filter((id) => ! questions[id].optionOne.votes.includes(authedUser) && ! questions[id].optionTwo.votes.includes(authedUser))
 			break;
-		case 'mine':
+		case '/dashboard/my-questions':
 			sortedQuestions = Object.keys(questions)
 				.filter((id) => questions[id].author === authedUser)
 			break;
@@ -53,6 +66,7 @@ function mapStateToProps({ questions, authedUser }, { type }) {
 			sortedQuestions = Object.keys(questions)
 	}
 	return {
+		authedUser,
 		questionIds: sortedQuestions
 			.sort((a,b) => questions[b].timestamp - questions[a].timestamp),
 	}

@@ -22,12 +22,17 @@ class Login extends Component {
 		e.preventDefault()
 
 		const { id } = this.state
-		const { dispatch } = this.props
-		dispatch( setAuthedUser( id ))
+		const { dispatch, history } = this.props
 
-		this.setState({
-			loggedIn: true
-		})
+		try {
+			dispatch( setAuthedUser( id ))
+			this.setState({
+				loggedIn: true
+			})
+			history.push( '/' )
+		} catch (e) {
+			alert(e.message)
+		} 
 	}
 
 	handleSelect = (e) => {
@@ -39,12 +44,12 @@ class Login extends Component {
 		const { users, authedUser } = this.props
 
 		if ( authedUser ) {
-			return <Redirect to='/' />
+			return <Redirect to='/dashboard/all' />
 		}
 
 		return (
 			<Fragment>
-				{ ! authedUser && <Nav /> }
+				{/* { ! authedUser && <Nav /> } */}
 			<section className='page-content login-page'>
 				<form 
 					className='login card'
