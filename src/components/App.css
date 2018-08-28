@@ -31,6 +31,10 @@ nav i.material-icons.home-link {
 	position: relative;
 }
 
+h4.or {
+	margin-top: 3px;
+}
+
 .login-page {
 	position: absolute;
 	top: 50%;
@@ -163,4 +167,12 @@ select {
 .score p {
 	/* text-transform: uppercase; */
 	font-weight: bold;
+}
+
+input.option-input {
+	box-sizing: border-box;
+	height: 64px;
+	line-height: 64px;
+	padding: 0 1rem;
+	font-size: 1.2rem;
 }

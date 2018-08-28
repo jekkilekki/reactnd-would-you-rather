@@ -3,7 +3,6 @@ import { receiveUsers } from '../actions/users'
 import { receiveQuestions } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
-// const AUTHED_ID = 'tylermcginnis'
 
 export function handleInitialData() {
 	return ( dispatch ) => {

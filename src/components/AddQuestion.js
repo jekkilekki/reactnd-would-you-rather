@@ -8,24 +8,38 @@ class AddQuestion extends Component {
 		optionTwo: ''
 	}
 
-	handleChange = (e) => {
+	handleOptionOneChange = (e) => {
 		const text = e.target.value
-		this.setState((prevState) => ({
-			text
-		}))
+		this.setState({
+			optionOne: text
+		})
+	}
+
+	handleOptionTwoChange = (e) => {
+		const text = e.target.value
+		this.setState({
+			optionTwo: text
+		})
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault()
 
 		const { optionOne, optionTwo } = this.state
-		const { dispatch } = this.props
-		dispatch( handleAddQuestion( optionOne, optionTwo ))
+		const { dispatch, history } = this.props
 
-		this.setState(() => ({
-			optionOne: '',
-			optionTwo: ''
-		}))
+		try {
+			dispatch( handleAddQuestion( optionOne, optionTwo ))
+		
+			this.setState(() => ({
+				optionOne: '',
+				optionTwo: ''
+			}))
+
+			history.push( '/dashboard/all' )
+		} catch (e) {
+			alert(e.message)
+		} 
 	}
 
 	render() {
@@ -36,7 +50,7 @@ class AddQuestion extends Component {
 		return (
 			<section className='page-content'>
 				<h2 className='center'>Ask a Question</h2>
-				<div class='question card'>
+				<div className='question card'>
 					<h4 className='center'>Would you rather...?</h4>
 					<form 
 						className='add-question-form' 
@@ -45,20 +59,20 @@ class AddQuestion extends Component {
 						<input
 							placeholder='Option One'
 							value={optionOne}
-							onChange={this.handleChange}
-							className='option-input'
+							onChange={this.handleOptionOneChange}
+							className='option-input optionOne-input teal lighten-4'
 							maxLength={100}
 						/>
 						<h4 className='center or'>or</h4>
 						<input
 							placeholder='Option Two'
 							value={optionTwo}
-							onChange={this.handleChange}
-							className='option-input'
+							onChange={this.handleOptionTwoChange}
+							className='option-input optionTwo-input purple lighten-4'
 							maxLength={100}
 						/>
 						<button
-							className='btn waves-effect waves-light'
+							className='btn btn-large waves-effect waves-light'
 							type='submit'
 							disabled={ '' === optionOne || '' === optionTwo }
 						>

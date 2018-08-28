@@ -12,6 +12,11 @@
   margin: 0 auto 1rem;
 }
 
+.delete {
+  position: absolute;
+  right: 2rem;
+}
+
 .question-meta {
   color: black;
   text-align: center;

@@ -56,7 +56,14 @@ class Question extends Component {
 		return (
 			<div className={'question card hoverable ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '')}>
 				<header>
-					{ answered && <span className='status'>You answered</span> }
+					{ answered && 
+						<span className='status'>You answered</span>
+					}
+					{ asked &&
+						<span className='delete'>
+							<i className='material-icons black-text' title='Delete your question'>close</i>
+						</span>
+					}
 					<div 
 						style={{backgroundImage: `url(${avatar})`}}
 						alt={`Avatar of ${name}`}
@@ -138,7 +145,7 @@ class Question extends Component {
 
 				<footer className='question-meta'>
 					<span className='answers'>
-						{ answers } Answer{ answers > 1 ? 's' : ''}
+						{ answers } Answer{ answers === 1 ? '' : 's'}
 					</span>
 					<span className='timestamp'>{formatDate(timestamp)}</span>
 				</footer>
