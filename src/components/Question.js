@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
-import { handleAnswerQuestion } from '../actions/questions'
+import { handleAnswerQuestion, handleDeleteQuestion } from '../actions/questions'
 import './Question.css'
 
 class Question extends Component {
@@ -13,19 +13,36 @@ class Question extends Component {
 		authedUser: string.isRequired
 	}
 
-	toParent = (e, id) => {
+	handleDelete = (e, id) => {
 		e.preventDefault()
-		this.props.history.push(`/question/${id}`)
+		const { dispatch } = this.props
+		dispatch( handleDeleteQuestion( id ))
 	}
 
-	handleAnswer = (e, id) => {
+	handleAnswer = (e, answered) => {
 		e.preventDefault()
 
+		if ( answered ) {
+			return
+		}
+
+		let choice = ''
+		if ( e.target.classList.contains( 'optionOne' ) ) {
+			choice = 'optionOne'
+		} else if ( e.target.classList.contains( 'optionTwo' ) ) {
+			choice = 'optionTwo'
+		} else {
+			alert( 'There was an error making your choice. Please try again.' )
+		}
+
 		const { dispatch, authedUser, question } = this.props
+		const qid = question.id
+		console.log( "Question: ", question )
+		console.log( "ID: ", qid )
 		dispatch( handleAnswerQuestion ({
-			id,
+			qid,
 			authedUser,
-			hasAnswered: question.hasAnswered
+			choice
 		}))
 	}
 
@@ -69,7 +86,7 @@ class Question extends Component {
 						</p>
 					}
 					{ asked &&
-						<span className='delete'>
+						<span className='delete' onClick={(e) => this.handleDelete(e)}>
 							<i className='material-icons black-text' title='Delete your question'>close</i>
 						</span>
 					}
@@ -98,14 +115,15 @@ class Question extends Component {
 							( answered && ! optionOne.votes.includes(authedUser) ? 'blue-grey lighten-3' : '' )
 						}
 						// style={{backgroundImage: `${optionOneGradient}`}}
-						onClick={(e) => this.optionOne(e, answered)}>
+						onClick={(e) => this.handleAnswer(e, answered)}
+					>
 						<span className={answered ? 'unclickable' : ''}>
 							{ answered && optionOne.votes.includes(authedUser) && 
 								<span className='your-answer'>
 									<i className='material-icons'>check</i>
 								</span>
 							}
-							{ optionOne.text }
+							<span className='optionOne'>{ optionOne.text }</span>
 						</span>
 					</div>
 
@@ -117,14 +135,14 @@ class Question extends Component {
 							( answered && ! optionTwo.votes.includes(authedUser)? 'blue-grey lighten-3' : 'purple lighten-2 ' )
 						}
 						// style={{backgroundImage: `${optionTwoGradient}`}}
-						onClick={(e) => this.optionTwo(e, answered)}>
+						onClick={(e) => this.handleAnswer(e, answered)}>
 						<span className={answered ? 'unclickable' : ''}>
 							{ answered && optionTwo.votes.includes(authedUser) && 
 								<span className='your-answer'>
 									<i className='material-icons'>check</i>
 								</span>
 							}
-							{ optionTwo.text }
+							<span className='optionTwo'>{ optionTwo.text }</span>
 						</span>
 					</div>
 				</div>

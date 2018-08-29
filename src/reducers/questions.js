@@ -1,4 +1,9 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/questions'
+import { 
+	RECEIVE_QUESTIONS, 
+	ANSWER_QUESTION, 
+	ADD_QUESTION,
+	DELETE_QUESTION
+} from '../actions/questions'
 
 export default function questions( state = {}, action ) {
 	switch ( action.type ) {
@@ -8,13 +13,15 @@ export default function questions( state = {}, action ) {
 				...action.questions
 			}
 		case ANSWER_QUESTION:
+			const { authedUser, id, choice } = action
 			return {
 				...state,
-				[action.id]: {
-					...state[action.id],
-					answers: action.hasAnswered === true
-						? state[action.id].answers.filter( (uid) => uid !== action.authedUser )
-						: state[action.id].answers.concat( [action.authedUser] )
+				[id]: {
+					...state[id],
+					[choice]: {
+						...state[id][choice],
+						votes: state[id][choice].votes.concat([authedUser])
+					}
 				}
 			}
 		case ADD_QUESTION: 
@@ -22,6 +29,11 @@ export default function questions( state = {}, action ) {
 			return {
 				...state,
 				[question.id]: action.question
+			}
+		case DELETE_QUESTION:
+			// const { id } = action
+			return {
+				...state.filter((question) => question.id !== action.id),
 			}
 		default:
 			return state;

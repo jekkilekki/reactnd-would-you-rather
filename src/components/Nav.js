@@ -24,7 +24,7 @@ class Nav extends Component {
 							{ authedUser &&
 							<Fragment>
 								<li>
-									<Link to='/dashboard/all'>Dashboard</Link>
+									<Link to='/dashboard/unanswered'>Dashboard</Link>
 								</li>
 								<li>
 									<Link to='/new'>New Question</Link>
@@ -49,7 +49,7 @@ class Nav extends Component {
 							{ authedUser && 
 							<Fragment>
 								<SideNavItem>
-									<Link to='/dashboard/all'>Dashboard</Link>
+									<Link to='/dashboard/unanswered'>Dashboard</Link>
 								</SideNavItem>
 								<SideNavItem>
 									<Link to='/new'>New Question</Link>
@@ -77,7 +77,7 @@ class Nav extends Component {
 						<div className='loggedin right'>
 							{ authedUser &&
 							<Fragment>
-								<span>Logged in as</span>
+								<span>{loggedinUser.name}</span>
 								<div 
 									className='loggedin-avatar' 
 									title={loggedinUser.name}

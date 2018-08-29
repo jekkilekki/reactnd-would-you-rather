@@ -36,7 +36,7 @@ class AddQuestion extends Component {
 				optionTwo: ''
 			}))
 
-			history.push( '/dashboard/all' )
+			history.push( '/dashboard/unanswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
