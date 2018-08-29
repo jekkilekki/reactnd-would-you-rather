@@ -30,7 +30,7 @@ class Question extends Component {
 	}
 
 	render() {
-		const { question, user, authedUser } = this.props
+		const { question, user, authedUser, single } = this.props
 		console.log( "Question: ", question )
 
 		if ( null === question ) {
@@ -40,7 +40,14 @@ class Question extends Component {
 		const { name, avatar, timestamp, optionOne, optionTwo } = question
 		let answers = optionOne.votes.length + optionTwo.votes.length,
 				answered = optionOne.votes.includes(authedUser) || optionTwo.votes.includes(authedUser),
-				asked = authedUser === user.id
+				asked = authedUser === user.id,
+				choice
+			
+		if (optionOne.votes.includes(authedUser)) {
+			choice = optionOne.votes.text
+		} else if (optionTwo.votes.includes(authedUser)) {
+			choice = optionTwo.votes.text
+		}
 
 		let optionOneScore = optionOne.votes.length / answers * 100,
 				optionOneRemainder = 100 - optionOneScore,
@@ -54,10 +61,12 @@ class Question extends Component {
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
 		return (
-			<div className={'question card hoverable ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '')}>
+			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '')}>
 				<header>
 					{ answered && 
-						<span className='status'>You answered</span>
+						<p className='status'>You would rather
+							<br /><span>{choice}</span>
+						</p>
 					}
 					{ asked &&
 						<span className='delete'>
@@ -89,7 +98,7 @@ class Question extends Component {
 							( answered && ! optionOne.votes.includes(authedUser) ? 'blue-grey lighten-3' : '' )
 						}
 						// style={{backgroundImage: `${optionOneGradient}`}}
-						onClick={(e) => this.optionOne(e)}>
+						onClick={(e) => this.optionOne(e, answered)}>
 						<span className={answered ? 'unclickable' : ''}>
 							{ answered && optionOne.votes.includes(authedUser) && 
 								<span className='your-answer'>
@@ -108,7 +117,7 @@ class Question extends Component {
 							( answered && ! optionTwo.votes.includes(authedUser)? 'blue-grey lighten-3' : 'purple lighten-2 ' )
 						}
 						// style={{backgroundImage: `${optionTwoGradient}`}}
-						onClick={(e) => this.optionTwo(e)}>
+						onClick={(e) => this.optionTwo(e, answered)}>
 						<span className={answered ? 'unclickable' : ''}>
 							{ answered && optionTwo.votes.includes(authedUser) && 
 								<span className='your-answer'>

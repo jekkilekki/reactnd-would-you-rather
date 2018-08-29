@@ -22,15 +22,11 @@ class App extends Component {
   }
 
   state = {
-    isAuthenticated: false
+    firstLogin: true
   }
 
   componentDidMount() {
     this.props.dispatch( handleInitialData() )
-  }
-
-  userHasAuthenticated = (auth) => {
-    this.setState({ isAuthenticated: auth })
   }
 
   render() {
@@ -46,6 +42,7 @@ class App extends Component {
                 <Nav />
                 <Switch>
                   <Route path='/login' component={Login} />
+                  <Route exact path ="/" component = {Home}/>
                   <Redirect to='/login' />
                 </Switch>
               </main>
@@ -55,11 +52,11 @@ class App extends Component {
                 <Nav />
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path='/dashboard/:type' component={Dashboard} />
+                  <Route path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
                   <Route path="/new" component={AddQuestion} />
                   <Route path="/question/:id" component={QuestionSingle} />
                   <Route path="/leaderboard" component={LeaderBoard} />
-                  <Route path="/login" component={Login} />
+                  <Route path="/login" component={Login} firstLogin={this.state.firstLogin} />
                   <Route component={NotFound} />
                 </Switch>
               </main>

@@ -44,7 +44,7 @@ class Login extends Component {
 		const { users, authedUser } = this.props
 
 		if ( authedUser ) {
-			return <Redirect to='/dashboard/all' />
+			return <Redirect to='/dashboard/unanswered' />
 		}
 
 		return (

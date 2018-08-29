@@ -37,7 +37,7 @@ class User extends Component {
 						className={'avatar ' + (authedUser === user.id ? 'z-depth-1' : '')}
 					></div>
 					<p className='author'>{name}
-						{ authedUser === user.id && <small><em> (That's you!)</em></small> }
+						{/* { authedUser === user.id && <i className='material-icons'>star</i> } */}
 					</p>
 				</td>
 				<td className='leaderboard-answered answered teal lighten-2'>

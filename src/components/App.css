@@ -14,6 +14,33 @@ h4 { font-size: 1.4rem; }
 h5 { font-size: 1.2rem; }
 h6 { font-size: 1rem; }
 
+.page-title .subtitle {
+	/* display: block; */
+	font-family: Caveat;
+	font-size: 2.5rem;
+	margin-top: 1rem;
+}
+
+::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	color: #555;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #555;
+}
+
+:-ms-input-placeholder {
+	/* IE 10+ */
+	color: #555;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	color: #555;
+}
+
 @media screen and (min-width: 993px) {
 	.hide-on-large-only {
 		display: none!important;
@@ -74,6 +101,21 @@ h4.or {
 .logout-button:hover,
 .tab:hover {
 	cursor: pointer;
+}
+
+.side-nav .logout-button {
+	color: white;
+	cursor: pointer;
+}
+
+.side-nav .logout-button span {
+	padding: 0 15px;
+	position: absolute;
+	width: calc(100% - 64px);
+}
+
+.side-nav .logout-button span:hover {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .loggedin {

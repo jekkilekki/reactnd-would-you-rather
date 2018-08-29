@@ -1,5 +1,5 @@
-not(.leaderboard-table) .current-user {
-  border: 5px solid #b2dfdb;
+.current-user {
+  /* border: 5px solid #b2dfdb; */
   /* background: #e0f2f1; */
 }
 
@@ -109,6 +109,10 @@ footer.question-meta .answers {
   right: 0rem;
 }
 
+.question-results .section-title {
+  margin-top: 1rem;
+}
+
 .results {
   margin-bottom: 1rem;
 }
@@ -147,11 +151,42 @@ footer.question-meta .answers {
   margin: 0 1rem;
 }
 
+.back-button {
+  color: black;
+}
+
+.back-button .material-icons {
+  position: relative;
+  top: 6px;
+}
+
 /* Leaderboard */
 .leaderboard-user .avatar,
 .leaderboard-user .author {
   float: left;
-  margin: 0;
+  margin: 0 1rem 0 0;
+}
+
+td.leaderboard-user {
+  padding: 10px 0;
+}
+
+.leaderboard-user .avatar {
+  width: 45px;
+  height: 45px;
+}
+
+.leaderboard-user .author {
+  line-height: 45px;
+}
+
+@media screen and (max-width: 35rem) {
+  .leaderboard-user .avatar {
+    display: none;
+  }
+  .leaderboard-user .author {
+    line-height: 1.4rem;
+  }
 }
 
 .leaderboard-rank,
@@ -164,11 +199,11 @@ footer.question-meta .answers {
 td.leaderboard-answered,
 td.leaderboard-asked,
 td.leaderboard-score {
-  font-size: 1.2rem;
   width: 80px;
 }
 
 td.leaderboard-score {
   font-weight: bold;
   color: white;
+  font-size: 1.2rem;
 }

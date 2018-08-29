@@ -9,14 +9,14 @@ class LeaderBoard extends Component {
 		return (
 			<section className='page-content'>
 				<h2 className='center'>Leaderboard</h2>
-				<table className='leaderboard-table card highlight responsive-table'>
+				<table className='leaderboard-table card'>
 					<thead>
 						<tr className='blue-grey lighten-5'>
 							<th className='leaderboard-rank' title='Rank'>Rank</th>
 							<th className='leaderboard-user'>Member name</th>
-							<th className='leaderboard-answered' title='Questions answered'><i class='material-icons'>check</i></th>
-							<th className='leaderboard-asked' title='Questions asked'><i class='material-icons'>help_outline</i></th>
-							<th className='leaderboard-score' title='Total score'><i class='material-icons'>star</i></th>
+							<th className='leaderboard-answered' title='Questions answered'><i className='material-icons'>check</i></th>
+							<th className='leaderboard-asked' title='Questions asked'><i className='material-icons'>help_outline</i></th>
+							<th className='leaderboard-score' title='Total score'><i className='material-icons'>star</i></th>
 						</tr>
 					</thead>
 					<tbody>

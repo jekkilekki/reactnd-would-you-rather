@@ -1,12 +1,24 @@
 import React, { Component } from 'react'
+import Toast from 'react-materialize'
 import { connect } from 'react-redux'
 import { array } from 'prop-types'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Question from './Question'
 
 class Dashboard extends Component {
 	static propTypes = {
 		questionIds: array.isRequired
+	}
+
+	componentDidMount() {
+		const { authedUser, users, firstLogin } = this.props 
+
+		if ( firstLogin ) {
+			window.Materialize.toast( `Welcome back, ${users[authedUser].name}!` , 5000 )
+			// this.setState((prevState) => ({
+			// 	firstLogin: prevState.firstLogin + 1
+			// }))
+		}
 	}
 
 	render() {
@@ -20,13 +32,13 @@ class Dashboard extends Component {
 						className={'tab' + (history.location.pathname === '/dashboard/all' ? ' active' : '')}>
 						All
 					</Link>
+					<Link to='/dashboard/unanswered'
+						className={'tab' + (history.location.pathname === '/dashboard/unanswered' ? ' active' : '')}>
+						Unanswered 
+					</Link>
 					<Link to='/dashboard/answered' 
 						className={'tab' + (history.location.pathname === '/dashboard/answered' ? ' active' : '')}>
 						Answered
-					</Link>
-					<Link to='/dashboard/unanswered' 
-						className={'tab' + (history.location.pathname === '/dashboard/unanswered' ? ' active' : '')}>
-						Unanswered
 					</Link>
 					<Link to='/dashboard/my-questions' 
 						className={'tab' + (history.location.pathname === '/dashboard/my-questions' ? ' active' : '')}>
@@ -47,7 +59,7 @@ class Dashboard extends Component {
 	}
 }
 
-function mapStateToProps({ questions, authedUser }, { history }) {
+function mapStateToProps({ questions, authedUser, users }, { history }) {
 	let sortedQuestions = {}
 	switch(history.location.pathname) {
 		case '/dashboard/answered':
@@ -67,6 +79,7 @@ function mapStateToProps({ questions, authedUser }, { history }) {
 	}
 	return {
 		authedUser,
+		users,
 		questionIds: sortedQuestions
 			.sort((a,b) => questions[b].timestamp - questions[a].timestamp),
 	}

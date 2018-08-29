@@ -18,7 +18,7 @@ class QuestionResult extends Component {
 		const { answers, questions } = user
 
 		return (
-			<div className='question card z-depth-0'>
+			<div className='question-results card z-depth-0'>
         <h3 className='section-title'>Vote Distribution</h3>
         <div className='options-container'>
           <div className='optionOne-list-container'>
