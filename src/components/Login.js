@@ -4,44 +4,46 @@ import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
 import { Dropdown, NavItem } from 'react-materialize'
-import Nav from './Nav'
 
 class Login extends Component {
 	state = {
-		id: '',
+		uid: '',
+		selectedUser: null,
 		loggedIn: false
-	}
-
-	handleChange = (e, {value}) => {
-		this.setState({ 
-			id:value 
-		})
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault()
 
-		const { id } = this.state
+		const { uid } = this.state
 		const { dispatch, history } = this.props
 
 		try {
-			dispatch( setAuthedUser( id ))
+			dispatch(setAuthedUser(uid))
 			this.setState({
 				loggedIn: true
 			})
-			history.push( '/' )
+			// history.push( '/dashboard/unanswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
 	}
 
 	handleSelect = (e) => {
-		console.log(e.target.id)
-		this.props.dispatch( setAuthedUser( e.target.id ) )
+		const { users } = this.props
+		const uid = e.target.id
+
+		this.setState({ 
+			uid: uid,
+			selectedUser: users.filter((user) => user.id === uid) 
+		})
 	}
 
 	render() {
 		const { users, authedUser } = this.props
+		const { uid, selectedUser } = this.state
+
+		console.log(selectedUser)
 
 		if ( authedUser ) {
 			return <Redirect to='/dashboard/unanswered' />
@@ -49,13 +51,24 @@ class Login extends Component {
 
 		return (
 			<Fragment>
-				{/* { ! authedUser && <Nav /> } */}
 			<section className='page-content login-page'>
 				<form 
 					className='login card'
 					onSubmit={this.handleSubmit}	
 				>
 					<h1 className='page-title center'>Login</h1>
+					{ uid !== '' &&
+						<div className='login-as center'>
+							<div
+								style={{backgroundImage: `url(${selectedUser[0].avatarURL})`}}
+								alt={`Avatar of ${selectedUser[0].name}`}
+								className='avatar'
+							>
+							</div>
+							<p>Login as <strong>{selectedUser[0].name}</strong></p>
+							{/* <input type='password' placeholder='password' /> */}
+						</div>
+					}
 					<Dropdown trigger={
 						<div className='login-dropdown user-select'>Select User</div>
 					}>
@@ -79,7 +92,7 @@ class Login extends Component {
 					<button
 						className='btn waves-effect waves-light'
 						type='submit'
-						disabled={ null === authedUser }
+						disabled={ null === selectedUser }
 					>
 					Login
 					</button>
