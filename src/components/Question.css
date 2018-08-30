@@ -17,6 +17,15 @@
   right: 2rem;
 }
 
+.status {
+  margin: 0;
+  max-width: 33%;
+}
+
+.status span {
+  font-weight: bold;
+}
+
 .question-meta {
   color: black;
   text-align: center;
@@ -111,6 +120,18 @@ footer.question-meta .answers {
 
 .question-results .section-title {
   margin-top: 1rem;
+}
+
+.optionOne-result,
+.optionTwo-result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.optionOne-result span:nth-child(2),
+.optionTwo-result span:nth-child(2) {
+  /* flex- */
 }
 
 .results {

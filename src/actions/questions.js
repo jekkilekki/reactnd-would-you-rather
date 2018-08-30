@@ -19,23 +19,23 @@ export function receiveQuestions( questions ) {
 /**
  * Answer Question
  */
-function answerQuestion({ id, authedUser, choice }) {
+function answerQuestion({ qid, authedUser, answer }) {
 	return {
 		type: ANSWER_QUESTION,
-		id,
+		qid,
 		authedUser,
-		choice
+		answer
 	}
 }
 
-export function handleAnswerQuestion( choice ) {
+export function handleAnswerQuestion(answer) {
 	return (dispatch) => {
-		dispatch( answerQuestion( choice ) )
+		dispatch( answerQuestion( answer ) )
 
-		return saveQuestionAnswer( choice )
+		return saveQuestionAnswer( answer )
 			.catch((e) => {
 				console.warn( 'Error in handleAnswerQuestion: ', e )
-				dispatch( answerQuestion( choice ) )
+				dispatch( answerQuestion( answer ) )
 				alert( 'There was an error answering the question. Please try again.' )
 			})
 	}

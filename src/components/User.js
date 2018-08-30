@@ -24,11 +24,27 @@ class User extends Component {
 				></div>
 			)
 		}
+
+		let rankDigit = rank === 11 || rank === 12 || rank === 13 ? '0' : rank.toString().split('').pop(),
+				rankSuffix = ''
+		switch(rankDigit) {
+			case '1':
+				rankSuffix = 'st'
+				break;
+			case '2':
+				rankSuffix = 'nd'
+				break;
+			case '3': 
+				rankSuffix = 'rd'
+				break;
+			default:
+				rankSuffix = 'th'
+		}
 		
 		return (
 			<tr className={'user ' + (authedUser === user.id ? 'current-user z-depth-3' : '')}>
 				<td className='leaderboard-rank rank'>
-					{rank}
+					<span className='new badge' data-badge-caption={rankSuffix}>{rank}</span>
 				</td>
 				<td className='leaderboard-user'>
 					<div 

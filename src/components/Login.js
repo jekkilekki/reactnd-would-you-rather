@@ -23,7 +23,6 @@ class Login extends Component {
 			this.setState({
 				loggedIn: true
 			})
-			// history.push( '/dashboard/unanswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
@@ -43,14 +42,11 @@ class Login extends Component {
 		const { users, authedUser } = this.props
 		const { uid, selectedUser } = this.state
 
-		console.log(selectedUser)
-
 		if ( authedUser ) {
 			return <Redirect to='/dashboard/unanswered' />
 		}
 
 		return (
-			<Fragment>
 			<section className='page-content login-page'>
 				<form 
 					className='login card'
@@ -99,7 +95,6 @@ class Login extends Component {
 					<p className='center'>Not a member yet? <a href="#">Sign up</a></p>
 				</form>
 			</section>
-			</Fragment>
 		)
 	}
 }

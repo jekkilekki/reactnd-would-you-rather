@@ -26,29 +26,27 @@ class Question extends Component {
 			return
 		}
 
-		let choice = ''
+		let answer = ''
 		if ( e.target.classList.contains( 'optionOne' ) ) {
-			choice = 'optionOne'
+			answer = 'optionOne'
 		} else if ( e.target.classList.contains( 'optionTwo' ) ) {
-			choice = 'optionTwo'
+			answer = 'optionTwo'
 		} else {
 			alert( 'There was an error making your choice. Please try again.' )
 		}
 
 		const { dispatch, authedUser, question } = this.props
 		const qid = question.id
-		console.log( "Question: ", question )
-		console.log( "ID: ", qid )
+
 		dispatch( handleAnswerQuestion ({
 			qid,
 			authedUser,
-			choice
+			answer
 		}))
 	}
 
 	render() {
 		const { question, user, authedUser, single } = this.props
-		console.log( "Question: ", question )
 
 		if ( null === question ) {
 			return <p>This question doesn't exist.</p>
@@ -58,23 +56,26 @@ class Question extends Component {
 		let answers = optionOne.votes.length + optionTwo.votes.length,
 				answered = optionOne.votes.includes(authedUser) || optionTwo.votes.includes(authedUser),
 				asked = authedUser === user.id,
-				choice
+				choice = '',
+				choiceClass = ''
 			
 		if (optionOne.votes.includes(authedUser)) {
-			choice = optionOne.votes.text
-		} else if (optionTwo.votes.includes(authedUser)) {
-			choice = optionTwo.votes.text
+			choice = optionOne.text
+			choiceClass = 'teal-text'
+		} else {
+			choice = optionTwo.text
+			choiceClass = 'purple-text'
 		}
 
-		let optionOneScore = optionOne.votes.length / answers * 100,
+		let optionOneScore = Math.trunc(optionOne.votes.length / answers * 100),
 				optionOneRemainder = 100 - optionOneScore,
 				optionOneGradient = answered && optionOneScore > 0
-					? `linear-gradient(to right, #80cbc4 ${optionOneScore}%, #cfd8dc ${optionOneRemainder}%)` 
+					? `linear-gradient(to right, #80cbc4 ${optionOneScore}%, #cfd8dc ${optionOneScore}%)` 
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)',
-				optionTwoScore = optionTwo.votes.length / answers * 100,
+				optionTwoScore = Math.trunc(optionTwo.votes.length / answers * 100),
 				optionTwoRemainder = 100 - optionTwoScore,
 				optionTwoGradient = answered && optionTwoScore > 0
-					? `linear-gradient(to right, #ce93d8 ${optionTwoScore}%, #cfd8dc ${optionTwoRemainder}%)` 
+					? `linear-gradient(to right, #ce93d8 ${optionTwoScore}%, #cfd8dc ${optionTwoScore}%)` 
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
 		return (
@@ -82,7 +83,7 @@ class Question extends Component {
 				<header>
 					{ answered && 
 						<p className='status'>You would rather
-							<br /><span>{choice}</span>
+							<br /><span className={choiceClass}>{choice}</span>
 						</p>
 					}
 					{ asked &&
@@ -156,16 +157,20 @@ class Question extends Component {
 							style={{backgroundImage: `${optionOneGradient}`}}
 						>
 							<span className='result-text'>{optionOne.text}</span>
-							<strong className='result-score'>{optionOneScore}%</strong>
-							<span className='result-votes'>{optionOne.votes.length} {optionOne.votes.length === 1 ? 'Vote' : 'Votes'}</span>
+							<span>
+								<strong className='result-score'>{optionOneScore}%</strong>
+								<span className='result-votes'>{optionOne.votes.length} {optionOne.votes.length === 1 ? 'Vote' : 'Votes'}</span>
+							</span>
 						</p>
 						<p 
 							className='optionTwo-result'
 							style={{backgroundImage: `${optionTwoGradient}`}}
 						>
 							<span className='result-text'>{optionTwo.text}</span>
-							<strong className='result-score'>{optionTwoScore}%</strong>
-							<span className='result-votes'>{optionTwo.votes.length} {optionTwo.votes.length === 1 ? 'Vote' : 'Votes'}</span>
+							<span>
+								<strong className='result-score'>{optionTwoScore}%</strong>
+								<span className='result-votes'>{optionTwo.votes.length} {optionTwo.votes.length === 1 ? 'Vote' : 'Votes'}</span>
+							</span>
 						</p>
 					</div>
 				}
