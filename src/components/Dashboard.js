@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { array } from 'prop-types'
 import { Link } from 'react-router-dom'
 import Question from './Question'
+import { TransitionGroup } from 'react-transition-group'
 
 class Dashboard extends Component {
 	static propTypes = {
@@ -45,7 +46,7 @@ class Dashboard extends Component {
 						Mine
 					</Link>
 				</ul>
-				<ul className='dashboard-list'>
+				<TransitionGroup component='ul' className='dashboard-list order'>
 					{this.props.questionIds.map((id) => (
 						<li key={id} className={`question-${id}`}>
 							<Link to={`/question/${id}`}>
@@ -53,7 +54,7 @@ class Dashboard extends Component {
 							</Link>
 						</li>
 					))}
-				</ul>
+				</TransitionGroup>
 			</section>
 		)
 	}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { handleAnswerQuestion, handleDeleteQuestion } from '../actions/questions'
+import { CSSTransition } from 'react-transition-group'
 import './Question.css'
 
 class Question extends Component {
@@ -49,7 +50,9 @@ class Question extends Component {
 		const { question, user, authedUser, single } = this.props
 
 		if ( null === question ) {
-			return <p>This question doesn't exist.</p>
+			return (
+				<p>This question doesn't exist.</p>
+			)
 		}
 
 		const { name, avatar, timestamp, optionOne, optionTwo } = question
@@ -68,17 +71,30 @@ class Question extends Component {
 		}
 
 		let optionOneScore = Math.trunc(optionOne.votes.length / answers * 100),
-				optionOneRemainder = 100 - optionOneScore,
 				optionOneGradient = answered && optionOneScore > 0
 					? `linear-gradient(to right, #80cbc4 ${optionOneScore}%, #cfd8dc ${optionOneScore}%)` 
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)',
 				optionTwoScore = Math.trunc(optionTwo.votes.length / answers * 100),
-				optionTwoRemainder = 100 - optionTwoScore,
 				optionTwoGradient = answered && optionTwoScore > 0
 					? `linear-gradient(to right, #ce93d8 ${optionTwoScore}%, #cfd8dc ${optionTwoScore}%)` 
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
+		const transitionOptions = {
+			classNames: 'dashboard-list',
+			// key,
+			timeout: { enter: 500, exit: 500 }
+		}
+
+		if ( answered ) {
+			return (
+				<CSSTransition {...transitionOptions}>
+					{/* <span>You answered this question.</span> */}
+				</CSSTransition>
+			)
+		}
+
 		return (
+			<CSSTransition {...transitionOptions}>
 			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '')}>
 				<header>
 					{ answered && 
@@ -182,6 +198,7 @@ class Question extends Component {
 					<span className='timestamp'>{formatDate(timestamp)}</span>
 				</footer>
 			</div>
+			</CSSTransition>
 		)
 	}
 }
