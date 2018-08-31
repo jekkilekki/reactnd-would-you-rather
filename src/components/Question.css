@@ -169,7 +169,8 @@ footer.question-meta .answers {
 }
 
 .options-container .avatar {
-  margin: 0 1rem;
+  margin: 0 0.5rem 0.5rem 0;
+  float: left;
 }
 
 .back-button {
@@ -230,24 +231,24 @@ td.leaderboard-score {
 }
 
 /* Animations */
-.order-enter {
+.dashboard-list-enter {
   transform: translateX(-120%);
   transition: 0.5s;
-  max-height: 0;
+  /* max-height: 0; */
   padding: 0 !important;
 }
 
-.order-enter.order-enter-active {
+.dashboard-list-enter.dashboard-list-enter-active {
   transform: translateX(0);
-  max-height: 60px;
-  padding: 2rem 0 !important;
+  /* max-height: 60px; */
+  /* padding: 2rem 0 !important; */
 }
 
-.order-exit {
+.dashboard-list-exit {
   transform: translateX(0);
   transition: 0.5s;
 }
-.order-exit.order-exit-active {
+.dashboard-list-exit.dashboard-list-exit-active {
   transform: translate(-120%);
   padding: 0;
 }

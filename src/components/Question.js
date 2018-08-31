@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { handleAnswerQuestion, handleDeleteQuestion } from '../actions/questions'
-import { CSSTransition } from 'react-transition-group'
+import { withRouter } from 'react-router'
 import './Question.css'
 
 class Question extends Component {
@@ -22,9 +22,12 @@ class Question extends Component {
 
 	handleAnswer = (e, answered) => {
 		e.preventDefault()
+		const { dispatch, authedUser, question, history } = this.props
+		const qid = question.id
 
 		if ( answered ) {
-			return
+			history.push(`/question/${qid}`)
+			return // without the return, we could vote infinitely
 		}
 
 		let answer = ''
@@ -35,9 +38,6 @@ class Question extends Component {
 		} else {
 			alert( 'There was an error making your choice. Please try again.' )
 		}
-
-		const { dispatch, authedUser, question } = this.props
-		const qid = question.id
 
 		dispatch( handleAnswerQuestion ({
 			qid,
@@ -79,22 +79,7 @@ class Question extends Component {
 					? `linear-gradient(to right, #ce93d8 ${optionTwoScore}%, #cfd8dc ${optionTwoScore}%)` 
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
-		const transitionOptions = {
-			classNames: 'dashboard-list',
-			// key,
-			timeout: { enter: 500, exit: 500 }
-		}
-
-		if ( answered ) {
-			return (
-				<CSSTransition {...transitionOptions}>
-					{/* <span>You answered this question.</span> */}
-				</CSSTransition>
-			)
-		}
-
 		return (
-			<CSSTransition {...transitionOptions}>
 			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '')}>
 				<header>
 					{ answered && 
@@ -198,7 +183,6 @@ class Question extends Component {
 					<span className='timestamp'>{formatDate(timestamp)}</span>
 				</footer>
 			</div>
-			</CSSTransition>
 		)
 	}
 }
@@ -214,4 +198,4 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
 	}
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))
