@@ -9,14 +9,14 @@ class QuestionSingle extends Component {
 		const { id } = this.props.match.params
 		const { questions, authedUser } = this.props
 
-		console.log( "Props! ", this.props )
-		console.log( "Question! ", questions[id])
+		// console.log( "Props! ", this.props )
+		// console.log( "Question! ", questions[id])
 
 		let answered = questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser)
 
 		return (
 			<section className='page-content'>
-				<Link className='back-button' to='/dashboard/all'>
+				<Link className='back-button' to='/dashboard/unanswered'>
 					<i className='material-icons'>arrow_back</i> Back to Dashboard
 				</Link>
 				<Question id={id} single={true} />
