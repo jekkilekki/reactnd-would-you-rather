@@ -83,6 +83,7 @@ function deleteQuestion( id ) {
 }
 
 export function handleDeleteQuestion( id ) {
+	console.log( 'Deleting: ', id )
 	return ( dispatch ) => {
 		dispatch( deleteQuestion( id ) )
 	}

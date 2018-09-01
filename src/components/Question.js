@@ -14,10 +14,13 @@ class Question extends Component {
 		authedUser: string.isRequired
 	}
 
-	handleDelete = (e, id) => {
+	handleDelete = (e) => {
 		e.preventDefault()
 		const { dispatch } = this.props
-		dispatch( handleDeleteQuestion( id ))
+		console.log( 'Deleting classlist: ', e.target.classList )
+		const qid = e.target.classList[2].substr(7)
+
+		dispatch( handleDeleteQuestion( qid ))
 	}
 
 	handleAnswer = (e, answered) => {
@@ -47,7 +50,7 @@ class Question extends Component {
 	}
 
 	render() {
-		const { question, user, authedUser, single } = this.props
+		const { question, user, authedUser, single, id } = this.props
 
 		if ( null === question ) {
 			return (
@@ -80,7 +83,7 @@ class Question extends Component {
 					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
 		return (
-			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '')}>
+			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '') + ` question-${id}`}>
 				<header>
 					{ answered && 
 						<p className='status'>You would rather
@@ -88,8 +91,8 @@ class Question extends Component {
 						</p>
 					}
 					{ asked &&
-						<span className='delete' onClick={(e) => this.handleDelete(e)}>
-							<i className='material-icons black-text' title='Delete your question'>close</i>
+						<span className={`delete`} onClick={(e) => this.handleDelete(e)}>
+							<i className={`material-icons black-text delete-${id}`} title='Delete your question'>close</i>
 						</span>
 					}
 					<div 

@@ -31,9 +31,10 @@ export default function questions( state = {}, action ) {
 				[question.id]: action.question
 			}
 		case DELETE_QUESTION:
-			// const { id } = action
+			const { id } = action
 			return {
-				...state.filter((question) => question.id !== action.id),
+				...state,
+				...state.filter((question) => question.id !== id),
 			}
 		default:
 			return state;

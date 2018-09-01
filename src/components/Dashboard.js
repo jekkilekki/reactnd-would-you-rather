@@ -54,8 +54,8 @@ class Dashboard extends Component {
 				</ul>
 				<TransitionGroup component='ul' className='dashboard-list order'>
 					{this.props.questionIds.map((id) => (
-						<CSSTransition {...transitionOptions}>
-							<li key={id} className={`question-${id}`}>
+						<CSSTransition key={id} {...transitionOptions}>
+							<li className={`question-${id}`}>
 								<Link to={`/question/${id}`}>
 									<Question id={id} />
 								</Link>
