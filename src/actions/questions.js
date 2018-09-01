@@ -66,8 +66,8 @@ export function handleAddQuestion( optionOneText, optionTwoText ) {
 			})
 			.then(() => dispatch( hideLoading() ) )
 			.catch((e)=>{
-				console.warn("Error in saving Question: ",e)
-				alert('There was an error while adding the question Try again')
+				console.warn("Error in saving Question: ", e)
+				alert('There was an error adding the question. Please try again.')
 			})
 	}
 }

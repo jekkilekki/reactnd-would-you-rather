@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { array } from 'prop-types'
 import { Link } from 'react-router-dom'
-import Question from './Question'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import Question from './Question'
+import DashboardNav from './DashboardNav'
 
 class Dashboard extends Component {
 	static propTypes = {
@@ -32,26 +33,11 @@ class Dashboard extends Component {
 		}
 
 		return (
-			<section className='page-content'>
+			<section className='page-content dashboard'>
 				<h2 className='center'>All Questions</h2>
-				<ul className='tabs card'>
-					<Link to='/dashboard/all' 
-						className={'tab' + (history.location.pathname === '/dashboard/all' ? ' active' : '')}>
-						All
-					</Link>
-					<Link to='/dashboard/unanswered'
-						className={'tab' + (history.location.pathname === '/dashboard/unanswered' ? ' active' : '')}>
-						Unanswered 
-					</Link>
-					<Link to='/dashboard/answered' 
-						className={'tab' + (history.location.pathname === '/dashboard/answered' ? ' active' : '')}>
-						Answered
-					</Link>
-					<Link to='/dashboard/my-questions' 
-						className={'tab' + (history.location.pathname === '/dashboard/my-questions' ? ' active' : '')}>
-						Mine
-					</Link>
-				</ul>
+				
+				<DashboardNav />
+
 				<TransitionGroup component='ul' className='dashboard-list order'>
 					{this.props.questionIds.map((id) => (
 						<CSSTransition key={id} {...transitionOptions}>

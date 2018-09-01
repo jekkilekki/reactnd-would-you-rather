@@ -38,7 +38,7 @@ class QuestionResult extends Component {
           </div>
         </div>
 			</div>
-		)
+    )
 	}
 }
 

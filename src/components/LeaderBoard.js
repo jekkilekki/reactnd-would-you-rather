@@ -4,7 +4,9 @@ import User from './User'
 
 class LeaderBoard extends Component {
 	render() {
-		const { userIds, questions, userList } = this.props
+		const { userIds, questions, userList, users } = this.props
+		console.log( "questions: ", questions )
+		console.log( "users: ", users )
 
 		return (
 			<section className='page-content'>
@@ -43,12 +45,17 @@ function mapStateToProps({ users, questions }) {
 		return { ...user, askCount, ansCount, score: (askCount + ansCount)}
 	})
 	return {
-		userIds: Object.keys(users),
+		userIds: Object.keys(users)
+			.sort((a, b) => {
+				return (users[b].questions.length + Object.keys(users[b].answers).length) -
+							(users[a].questions.length + Object.keys(users[a].answers).length)
+			}),
 		userList: userList
 			.sort((a, b) => {
 				return a.score - b.score
 			}),
-			questions
+		questions,
+		users
 	}
 }
 

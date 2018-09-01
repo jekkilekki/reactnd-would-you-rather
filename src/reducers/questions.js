@@ -14,6 +14,7 @@ export default function questions( state = {}, action ) {
 			}
 		case ANSWER_QUESTION:
 			const { authedUser, qid, answer } = action
+			console.log( "Answering state: ", state )
 			return {
 				...state,
 				[qid]: {
@@ -26,9 +27,10 @@ export default function questions( state = {}, action ) {
 			}
 		case ADD_QUESTION: 
 			const { question } = action
+			console.log( "Adding State: ", state )
 			return {
 				...state,
-				[question.id]: question
+				[question.id]: question,
 			}
 		case DELETE_QUESTION:
 			const { id } = action

@@ -4,6 +4,7 @@ import { object, func, string } from 'prop-types'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { handleAnswerQuestion, handleDeleteQuestion } from '../actions/questions'
 import { withRouter } from 'react-router'
+import QuestionVisual from './QuestionVisual'
 import './Question.css'
 
 class Question extends Component {
@@ -17,8 +18,7 @@ class Question extends Component {
 	handleDelete = (e) => {
 		e.preventDefault()
 		const { dispatch } = this.props
-		console.log( 'Deleting classlist: ', e.target.classList )
-		const qid = e.target.classList[2].substr(7)
+		const qid = e.target.classList[2].substr(7) // Get the id of the question to delete out of the button classList
 
 		dispatch( handleDeleteQuestion( qid ))
 	}
@@ -72,15 +72,6 @@ class Question extends Component {
 			choice = optionTwo.text
 			choiceClass = 'purple-text'
 		}
-
-		let optionOneScore = Math.trunc(optionOne.votes.length / answers * 100),
-				optionOneGradient = answered && optionOneScore > 0
-					? `linear-gradient(to right, #80cbc4 ${optionOneScore}%, #cfd8dc ${optionOneScore}%)` 
-					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)',
-				optionTwoScore = Math.trunc(optionTwo.votes.length / answers * 100),
-				optionTwoGradient = answered && optionTwoScore > 0
-					? `linear-gradient(to right, #ce93d8 ${optionTwoScore}%, #cfd8dc ${optionTwoScore}%)` 
-					: 'linear-gradient(to right, #cfd8dc 0%, #cfd8dc 100%)'
 
 		return (
 			<div className={'question card ' + (answered ? 'answered z-depth-0 blue-grey lighten-5' : '') + (! single ? ' hoverable' : '') + ` question-${id}`}>
@@ -153,30 +144,8 @@ class Question extends Component {
 				</div>
 
 				{/* Results */}
-				{ answered &&
-					<div className='results'>
-						<h3 className='section-title'>Poll Results</h3>
-						<p 
-							className='optionOne-result'
-							style={{backgroundImage: `${optionOneGradient}`}}
-						>
-							<span className='result-text'>{optionOne.text}</span>
-							<span>
-								<strong className='result-score'>{optionOneScore}%</strong>
-								<span className='result-votes'>{optionOne.votes.length} {optionOne.votes.length === 1 ? 'Vote' : 'Votes'}</span>
-							</span>
-						</p>
-						<p 
-							className='optionTwo-result'
-							style={{backgroundImage: `${optionTwoGradient}`}}
-						>
-							<span className='result-text'>{optionTwo.text}</span>
-							<span>
-								<strong className='result-score'>{optionTwoScore}%</strong>
-								<span className='result-votes'>{optionTwo.votes.length} {optionTwo.votes.length === 1 ? 'Vote' : 'Votes'}</span>
-							</span>
-						</p>
-					</div>
+				{ answered && single &&
+					<QuestionVisual optionOne={optionOne} optionTwo={optionTwo} />
 				}
 
 				<footer className='question-meta'>
