@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Dropdown, NavItem } from 'react-materialize'
 
 class Login extends Component {
@@ -16,7 +16,7 @@ class Login extends Component {
 		e.preventDefault()
 
 		const { uid } = this.state
-		const { dispatch, history } = this.props
+		const { dispatch } = this.props
 
 		try {
 			dispatch(setAuthedUser(uid))
@@ -92,7 +92,7 @@ class Login extends Component {
 					>
 					Login
 					</button>
-					<p className='center'>Not a member yet? <a href="#">Sign up</a></p>
+					<p className='center'>Not a member yet? <Link to='/'>Sign up</Link></p>
 				</form>
 			</section>
 		)

@@ -45,8 +45,6 @@ class AddQuestion extends Component {
 	render() {
 		const { optionOne, optionTwo } = this.state
 
-		{/* Redirect to home view after submit */}
-
 		return (
 			<section className='page-content'>
 				<h2 className='center'>Ask a Question</h2>

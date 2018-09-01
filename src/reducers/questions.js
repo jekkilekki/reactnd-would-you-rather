@@ -28,14 +28,22 @@ export default function questions( state = {}, action ) {
 			const { question } = action
 			return {
 				...state,
-				[question.id]: action.question
+				[question.id]: question
 			}
 		case DELETE_QUESTION:
 			const { id } = action
-			return {
-				...state,
-				...state.filter((question) => question.id !== id),
-			}
+			console.log( "State: ", state )
+			
+			const questionToDelete = action.id 
+			console.log ( "Question to Delete")
+			// newState.splice( questionToDelete, 1 )
+			delete state.id
+			return state
+			// const { id } = action
+			// console.log( state )
+			// return {
+			// 	questions: state.filter(({id}) => id !== action.id),
+			// }
 		default:
 			return state;
 	}

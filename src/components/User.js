@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { object, func, string } from 'prop-types'
-import { formatQuestion, formatDate } from '../utils/helpers'
 
 class User extends Component {
 	// static propTypes = {

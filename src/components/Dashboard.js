@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Toast from 'react-materialize'
+// import Toast from 'react-materialize'
 import { connect } from 'react-redux'
 import { array } from 'prop-types'
 import { Link } from 'react-router-dom'

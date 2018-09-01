@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { Link } from 'react-router-dom'
-import { SideNav, SideNavItem } from 'react-materialize'
+import { Link, NavLink } from 'react-router-dom'
+import { SideNav } from 'react-materialize'
 
 class Nav extends Component {
 	logout = () => {
@@ -40,37 +40,22 @@ class Nav extends Component {
 							trigger={<i className='sidenav-trigger material-icons hide-on-large-only'>menu</i>}
 							options={{ closeOnClick: true }}
 							>
-							<SideNavItem>
-								<i className='material-icons'>close</i>
-							</SideNavItem>
-							<SideNavItem>
-								<Link to='/'><i className='material-icons home-link'>home</i></Link>
-							</SideNavItem>
+							<li className='sidenav-link'><a className='sidenav-close'><i className='material-icons'>close</i></a></li>
+							<li className='sidenav-link'><NavLink to='/'><i className='material-icons home-link white-text'>home</i></NavLink></li>
 							{ authedUser && 
 							<Fragment>
-								<SideNavItem>
-									<Link to='/dashboard/unanswered'>Dashboard</Link>
-								</SideNavItem>
-								<SideNavItem>
-									<Link to='/new'>New Question</Link>
-								</SideNavItem>
-								<SideNavItem>
-									<Link to='/leaderboard'>Leaderboard</Link>
-								</SideNavItem>
-								<SideNavItem>
-									<span 
-										className='logout-button'
-										onClick={this.logout}
-									>
-										<span>Logout</span>
-									</span>
-								</SideNavItem>
+								<li className='sidenav-link'><NavLink to='/dashboard/unanswered'>Dashboard</NavLink></li>
+								<li className='sidenav-link'><NavLink to='/new'>New Question</NavLink></li>
+								<li className='sidenav-link'><NavLink to='/leaderboard'>Leaderboard</NavLink></li>
+								<li className='sidenav-link'><a 
+									className='logout-button'
+									onClick={this.logout}
+								>Logout</a>
+								</li>
 							</Fragment>
 							}
 							{ ! authedUser &&
-								<SideNavItem>
-									<Link to='/login'>Login</Link>
-								</SideNavItem>
+								<li><NavLink to='/login'>Login</NavLink></li>
 							}
 						</SideNav>
 						
