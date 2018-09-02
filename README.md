@@ -224,6 +224,7 @@ The following files are contained within the `/utils` folder:
 
 The following list are things I'm contemplating for future development:
 
+- Add screenshots to Home view and README
 - `DELETE_QUESTION` functionality
   - For users to delete their own questions
   - If an `admin` role is implemented, to delete any asked questions
