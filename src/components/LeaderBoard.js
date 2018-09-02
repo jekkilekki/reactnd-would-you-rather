@@ -4,7 +4,7 @@ import User from './User'
 
 class LeaderBoard extends Component {
 	render() {
-		const { userIds, questions, userList, users } = this.props
+		const { userIds, questions, users } = this.props
 		console.log( "questions: ", questions )
 		console.log( "users: ", users )
 
@@ -38,22 +38,22 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({ users, questions }) {
-	const userList = Object.keys(users).map((id) => {
-		const user = users[id]
-		const askCount = user.questions.length
-		const ansCount = Object.keys(user.answers).length
-		return { ...user, askCount, ansCount, score: (askCount + ansCount)}
-	})
+	// const userList = Object.keys(users).map((id) => {
+	// 	const user = users[id]
+	// 	const askCount = user.questions.length
+	// 	const ansCount = Object.keys(user.answers).length
+	// 	return { ...user, askCount, ansCount, score: (askCount + ansCount)}
+	// })
 	return {
 		userIds: Object.keys(users)
 			.sort((a, b) => {
 				return (users[b].questions.length + Object.keys(users[b].answers).length) -
 							(users[a].questions.length + Object.keys(users[a].answers).length)
 			}),
-		userList: userList
-			.sort((a, b) => {
-				return a.score - b.score
-			}),
+		// userList: userList
+		// 	.sort((a, b) => {
+		// 		return a.score - b.score
+		// 	}),
 		questions,
 		users
 	}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
+// import { formatQuestion, formatDate } from '../utils/helpers'
 
 class QuestionVisual extends Component {
   // state = {

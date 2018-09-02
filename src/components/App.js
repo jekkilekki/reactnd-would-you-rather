@@ -53,7 +53,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
-                  <Route path="/new" component={AddQuestion} />
+                  <Route path="/add" component={AddQuestion} />
                   <Route path="/question/:id" component={QuestionSingle} />
                   <Route path="/leaderboard" component={LeaderBoard} />
                   <Route path="/login" component={Login} firstLogin={this.state.firstLogin} />

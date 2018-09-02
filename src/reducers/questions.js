@@ -33,13 +33,12 @@ export default function questions( state = {}, action ) {
 				[question.id]: question,
 			}
 		case DELETE_QUESTION:
-			const { id } = action
+			// const { id } = action
 			console.log( "State: ", state )
-			
-			const questionToDelete = action.id 
+			// const questionToDelete = action.id 
 			console.log ( "Question to Delete")
 			// newState.splice( questionToDelete, 1 )
-			delete state.id
+			// delete state.id
 			return state
 			// const { id } = action
 			// console.log( state )

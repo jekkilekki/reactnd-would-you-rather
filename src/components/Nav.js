@@ -27,7 +27,7 @@ class Nav extends Component {
 									<Link to='/dashboard/unanswered'>Dashboard</Link>
 								</li>
 								<li>
-									<Link to='/new'>New Question</Link>
+									<Link to='/add'>Add Question</Link>
 								</li>
 								<li>
 									<Link to='/leaderboard'>Leaderboard</Link>
@@ -45,7 +45,7 @@ class Nav extends Component {
 							{ authedUser && 
 							<Fragment>
 								<li className='sidenav-link'><NavLink to='/dashboard/unanswered'>Dashboard</NavLink></li>
-								<li className='sidenav-link'><NavLink to='/new'>New Question</NavLink></li>
+								<li className='sidenav-link'><NavLink to='/add'>Add Question</NavLink></li>
 								<li className='sidenav-link'><NavLink to='/leaderboard'>Leaderboard</NavLink></li>
 								<li className='sidenav-link'><a 
 									className='logout-button'

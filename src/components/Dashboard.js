@@ -24,7 +24,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const { history } = this.props 
+		// const { history } = this.props 
 
 		const transitionOptions = {
 			classNames: 'dashboard-list',
