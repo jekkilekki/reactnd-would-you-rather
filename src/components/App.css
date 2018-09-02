@@ -1,3 +1,56 @@
+/*
+Project: Would You Rather? React + Redux App
+Project URI: https://github.com/jekkilekki/reactnd-would-you-rather
+Author: Aaron Snowberger
+Author URI: https://aaron.kr
+Description: A polling app that allows users to answer questions or ask new questions. All app data is managed by the Redux store and updated by actions sent to reducers.
+Version: 1.0.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+
+This project, like React, is licensed under the MIT open source license.
+*/
+
+/* LICENSE
+Copyright 2018 Aaron Snowberger
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+software and associated documentation files (the "Software"), to deal in the Software 
+without restriction, including without limitation the rights to use, copy, modify, 
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+permit persons to whom the Software is furnished to do so, subject to the following 
+conditions:
+
+The above copyright notice and this permission notice shall be included in all copies 
+or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE 
+OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+/*----------------------------------------------------
+>>> TABLE OF CONTENTS:
+------------------------------------------------------
+# Elements
+# Header
+	# Navigation
+	# Sidenav
+	# Tabs Navigation
+# Page Elements
+	# Login Page
+	# Dashboard
+	# Add Question
+	# Leaderboard
+	# 404
+# CSS Animations
+----------------------------------------------------*/
+/*----------------------------------------------------
+# Elements
+----------------------------------------------------*/
 body {
 	background: #cfd8dc;
 }
@@ -18,11 +71,10 @@ strong {
 	font-weight: bold;
 }
 
-.page-title .subtitle {
-	/* display: block; */
-	font-family: Caveat;
-	font-size: 2.5rem;
-	margin-top: 1rem;
+/* MaterializeCSS sets this to none by default */
+select {
+	display: block;
+	margin-bottom: 1rem;
 }
 
 ::-webkit-input-placeholder {
@@ -45,10 +97,25 @@ strong {
 	color: #555;
 }
 
+.btn {
+	display: block;
+	margin: 1rem auto;
+}
+
+/*----------------------------------------------------
+# Header
+----------------------------------------------------*/
+/*----------------------------------------------------
+## Navigation
+----------------------------------------------------*/
 @media screen and (min-width: 993px) {
 	.hide-on-large-only {
 		display: none!important;
 	}
+}
+
+.main-navigation {
+	margin-bottom: 2rem;
 }
 
 nav i.material-icons.home-link {
@@ -56,16 +123,106 @@ nav i.material-icons.home-link {
 	height: 48px!important;
 }
 
-.or {
-	background: white;
-	padding: 0 10px;
-	position: relative;
+.loggedin {
+	display: flex;
+	align-items: center;
 }
 
-h4.or {
-	margin-top: 3px;
+.loggedin.right {
+	margin-right: 1rem;
 }
 
+.loggedin-avatar {
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 50%;
+	margin: 0 0.5rem;
+}
+
+/*----------------------------------------------------
+## Sidenav
+----------------------------------------------------*/
+.sidenav-trigger:hover,
+.logout-button:hover,
+.tab:hover {
+	cursor: pointer;
+}
+
+.sidenav-link a {
+	color: white!important;
+}
+
+.side-nav .logout-button {
+	color: white;
+	cursor: pointer;
+}
+
+.side-nav .logout-button span {
+	padding: 0 15px;
+	position: absolute;
+	width: calc(100% - 64px);
+}
+
+.side-nav .logout-button span:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*----------------------------------------------------
+## Tabs Navigation
+----------------------------------------------------*/
+tabs {
+	flex-wrap: wrap;
+}
+
+.tabs.card {
+	padding: 0;
+}
+
+a.tab {
+	color: black;
+}
+
+.tabs .tab {
+	text-transform: capitalize;
+	padding: 0 2rem;
+}
+
+@media screen and (max-width: 30rem) {
+	.tabs .tab {
+		padding: 0 1rem;
+	}
+}
+
+.tab.active {
+	color: #9c27b0;
+	border-bottom: 3px solid #9c27b0;
+}
+
+/*----------------------------------------------------
+# Page Elements
+----------------------------------------------------*/
+.page-title .subtitle {
+	/* display: block; */
+	font-family: Caveat;
+	font-size: 2.5rem;
+	margin-top: 1rem;
+}
+
+.page-content {
+	padding: 0 2rem;
+	max-width: 50rem;
+	margin: 0 auto 4rem;
+}
+
+.card {
+	padding: 1rem 2rem;
+}
+
+/*----------------------------------------------------
+## Login Page
+----------------------------------------------------*/
 .login-page {
 	position: absolute;
 	top: 50%;
@@ -101,121 +258,81 @@ h4.or {
 	line-height: 30px;
 }
 
-.sidenav-trigger:hover,
-.logout-button:hover,
-.tab:hover {
-	cursor: pointer;
+/*----------------------------------------------------
+## Dashboard
+----------------------------------------------------*/
+.or {
+	background: white;
+	padding: 0 10px;
+	position: relative;
 }
 
-.sidenav-link a {
-	color: white!important;
+/*----------------------------------------------------
+## Add Question
+----------------------------------------------------*/
+h4.or {
+	margin-top: 3px;
 }
 
-.side-nav .logout-button {
-	color: white;
-	cursor: pointer;
+input.option-input {
+	box-sizing: border-box;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 1rem;
+	font-size: 1.2rem;
 }
 
-.side-nav .logout-button span {
-	padding: 0 15px;
-	position: absolute;
-	width: calc(100% - 64px);
+/*----------------------------------------------------
+## Leaderboard
+----------------------------------------------------*/
+.leaderboard-user .avatar,
+.leaderboard-user .author {
+  float: left;
+  margin: 0 1rem 0 0;
 }
 
-.side-nav .logout-button span:hover {
-	background-color: rgba(0, 0, 0, 0.1);
+td.leaderboard-user {
+  padding: 10px 0;
 }
 
-.loggedin {
-	display: flex;
-	align-items: center;
+.leaderboard-user .avatar {
+  width: 45px;
+  height: 45px;
 }
 
-.loggedin.right {
-	margin-right: 1rem;
+.leaderboard-user .author {
+  line-height: 45px;
 }
 
-.loggedin-avatar {
-	width: 40px;
-	height: 40px;
-	background-size: cover;
-	background-position: center;
-	border-radius: 50%;
-	margin: 0 0.5rem;
+@media screen and (max-width: 35rem) {
+  .leaderboard-user .avatar {
+    display: none;
+  }
+  .leaderboard-user .author {
+    line-height: 1.4rem;
+  }
 }
 
-.main-navigation {
-	margin-bottom: 2rem;
+.leaderboard-rank,
+.leaderboard-answered,
+.leaderboard-asked,
+.leaderboard-score  {
+  text-align: center;
 }
 
-.page-content {
-	padding: 0 2rem;
-	max-width: 50rem;
-	margin: 0 auto 4rem;
+td.leaderboard-answered,
+td.leaderboard-asked,
+td.leaderboard-score {
+  width: 80px;
 }
 
-.card {
-	padding: 1rem 2rem;
-}
-
-.tabs {
-	flex-wrap: wrap;
-}
-
-.tabs.card {
-	padding: 0;
-}
-
-a.tab {
-	color: black;
-}
-
-.tabs .tab {
-	text-transform: capitalize;
-	padding: 0 2rem;
-}
-
-@media screen and (max-width: 30rem) {
-	.tabs .tab {
-		padding: 0 1rem;
-	}
-}
-
-.tab.active {
-	color: #9c27b0;
-	border-bottom: 3px solid #9c27b0;
-}
-
-.btn {
-	display: block;
-	margin: 1rem auto;
-}
-
-/* MaterializeCSS sets this to none by default */
-select {
-	display: block;
-	margin-bottom: 1rem;
-}
-
-.user .question-meta {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 0;
-	color: white;
-}
-
-.question-meta-title {
-	margin-bottom: 0.25rem;
-	font-style: italic;
-	opacity: 0.7;
-}
-
-.user .question-meta h2 {
-	margin-top: 0;
+td.leaderboard-score {
+  font-weight: bold;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .score p {
-	/* text-transform: uppercase; */
 	font-weight: bold;
 }
 
@@ -243,10 +360,28 @@ select {
 	background: #e1bee7;
 }
 
-input.option-input {
-	box-sizing: border-box;
-	height: 60px;
-	line-height: 60px;
-	padding: 0 1rem;
-	font-size: 1.2rem;
+/*----------------------------------------------------
+## 404
+----------------------------------------------------*/
+
+/*----------------------------------------------------
+# CSS Animations
+----------------------------------------------------*/
+.dashboard-list-enter {
+  transform: translateX(-120%);
+  transition: 0.5s;
+  padding: 0 !important;
+}
+
+.dashboard-list-enter.dashboard-list-enter-active {
+  transform: translateX(0);
+}
+
+.dashboard-list-exit {
+  transform: translateX(0);
+  transition: 0.5s;
+}
+.dashboard-list-exit.dashboard-list-exit-active {
+  transform: translate(-120%);
+  padding: 0;
 }

@@ -20,7 +20,9 @@ class Question extends Component {
 		const { dispatch } = this.props
 		const qid = e.target.classList[2].substr(7) // Get the id of the question to delete out of the button classList
 
-		dispatch( handleDeleteQuestion( qid ))
+		alert( 'Delete question functionality to be implemented in a later version of the app. Please perform another action.' )
+
+		// dispatch( handleDeleteQuestion( qid ))
 	}
 
 	handleAnswer = (e, answered) => {

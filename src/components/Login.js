@@ -62,7 +62,6 @@ class Login extends Component {
 							>
 							</div>
 							<p>Login as <strong>{selectedUser[0].name}</strong></p>
-							{/* <input type='password' placeholder='password' /> */}
 						</div>
 					}
 					<Dropdown trigger={
@@ -73,7 +72,8 @@ class Login extends Component {
 								key={user.id}
 								id={user.id} 
 								className={`login-dropdown ${user.id}`}
-								onClick={this.handleSelect}>
+								onClick={(e) => this.handleSelect(e)}
+							>
 								<div id={user.id}>
 									<div 
 										style={{backgroundImage: `url(${user.avatarURL})`}} 

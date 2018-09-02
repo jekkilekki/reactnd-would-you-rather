@@ -24,8 +24,6 @@ It was built as part of Udacity's [React Nanodegree](https://www.udacity.com/cou
 - [License](#license)
 - [Changelog](#changelog)
 
----
-
 ## Overview
 
 In a nutshell, users are able to:
@@ -38,8 +36,6 @@ questions
 5. The Leaderboard updates users' rank and score based on their activity in the app
 
 More details about the app's functionality can be found in the [Application Functionality](#application-functionality) section of this guide.
-
----
 
 ## Installation
 
@@ -60,8 +56,6 @@ npm start
 The application should then automatically load in your browser at [http://localhost:3000](http://localhost:3000)
 
 For a more complete explanation of each available `npm` script and what it does, see the Create React App's [README file](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts).
-
----
 
 ## Application Functionality
 
@@ -135,8 +129,6 @@ The Leaderboard is available at `/leaderboard`. Entries are updated whenever an 
 3. Number of questions answered
 4. Number of questions asked
 5. Total score (questions answered + questions asked)
-
----
 
 ## Architecture
 
@@ -228,8 +220,6 @@ The following files are contained within the `/utils` folder:
 - `api.js` (API calls to get our initial data and save future data)
 - `helpers.js` (to properly format Questions and Date timestamps)
 
----
-
 ## Future Development
 
 The following list are things I'm contemplating for future development:
@@ -247,8 +237,6 @@ The following list are things I'm contemplating for future development:
 
 The best way to Contribute to this app is to open an [Issue](https://github.com/jekkilekki/reactnd-would-you-rather/issues) on GitHub.<br>I likely will not spend much time looking at Pull Requests.
 
----
-
 ## License
 
 The **Would You Rather?** app is licensed under the [MIT open source license](https://opensource.org/licenses/MIT) and built with React and Redux and uses the following third-party resources and `node` modules:
@@ -265,8 +253,6 @@ The **Would You Rather?** app is licensed under the [MIT open source license](ht
   - [Noto Sans](https://fonts.google.com/specimen/Noto+Sans)
   - [Caveat](https://fonts.google.com/specimen/Caveat)
   - [Material Icons](https://materializecss.com/icons.html) (as part of MaterializeCSS)
-
----
 
 ## Changelog
 
