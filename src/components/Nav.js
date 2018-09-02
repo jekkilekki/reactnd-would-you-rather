@@ -55,7 +55,7 @@ class Nav extends Component {
 							</Fragment>
 							}
 							{ ! authedUser &&
-								<li><NavLink to='/login'>Login</NavLink></li>
+								<li className='sidenav-link'><NavLink to='/login'>Login</NavLink></li>
 							}
 						</SideNav>
 						
@@ -73,7 +73,7 @@ class Nav extends Component {
 								</span>
 							</Fragment>
 							}
-							{!authedUser &&
+							{ ! authedUser &&
 								<Link to='/login'>Login</Link>
 							}
 						</div>

@@ -102,6 +102,14 @@ select {
 	margin: 1rem auto;
 }
 
+.home-page ul {
+	margin-left: 1.5rem;
+}
+
+.home-page li {
+	list-style-type: disc!important;
+}
+
 /*----------------------------------------------------
 # Header
 ----------------------------------------------------*/
