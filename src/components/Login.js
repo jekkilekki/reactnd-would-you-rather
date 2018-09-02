@@ -80,7 +80,7 @@ class Login extends Component {
 										title={user.name} 
 										className='avatar'>
 									</div>
-									<span className='user'>{user.name}</span>
+									<span id={user.id} className='user'>{user.name}</span>
 								</div>
 							</NavItem>
 						))}
