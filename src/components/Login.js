@@ -16,13 +16,14 @@ class Login extends Component {
 		e.preventDefault()
 
 		const { uid } = this.state
-		const { dispatch } = this.props
+		const { dispatch, history } = this.props
 
 		try {
 			dispatch(setAuthedUser(uid))
 			this.setState({
 				loggedIn: true
 			})
+			history.push( '/dashboard/unaswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
@@ -42,9 +43,9 @@ class Login extends Component {
 		const { users, authedUser } = this.props
 		const { uid, selectedUser } = this.state
 
-		if ( authedUser ) {
-			return <Redirect to='/dashboard/unanswered' />
-		}
+		// if ( authedUser ) {
+		// 	return <Redirect to='/dashboard/unanswered' />
+		// }
 
 		return (
 			<section className='page-content login-page'>

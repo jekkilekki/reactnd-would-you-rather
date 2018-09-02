@@ -14,6 +14,8 @@ class QuestionSingle extends Component {
 
 		let answered = questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser)
 
+		// if id !=== found in questions, Redirect to /404
+
 		return (
 			<section className='page-content'>
 				<Link className='back-button' to='/dashboard/unanswered'>

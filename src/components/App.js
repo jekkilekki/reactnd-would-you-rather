@@ -52,6 +52,7 @@ class App extends Component {
                 <Nav />
                 <Switch>
                   <Route exact path="/" component={Home} />
+                  <Route from='/dashboard' to='/dashboard/unanswered' />
                   <Route path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
                   <Route path="/add" component={AddQuestion} />
                   <Route path="/question/:id" component={QuestionSingle} />
