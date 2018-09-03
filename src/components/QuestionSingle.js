@@ -6,15 +6,10 @@ import QuestionResult from './QuestionResult'
 
 class QuestionSingle extends Component {
 	render() {
-		const { id } = this.props.match.params
-		const { questions, authedUser } = this.props
-
-		// console.log( "Props! ", this.props )
-		// console.log( "Question! ", questions[id])
+		const { questions, authedUser, location } = this.props
+		let id = location.pathname.substr(10)
 
 		let answered = questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser)
-
-		// if id !=== found in questions, Redirect to /404
 
 		return (
 			<section className='page-content'>

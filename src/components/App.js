@@ -18,7 +18,7 @@ import './App.css'
 
 class App extends Component {
   static propTypes = {
-    loading: bool.isRequired,
+    notLoggedIn: bool.isRequired,
     dispatch: func.isRequired
   }
 
@@ -31,42 +31,39 @@ class App extends Component {
   }
 
   render() {
-    const { loading } = this.props
+    const { notLoggedIn } = this.props
 
     return (
       <Router>
         <Fragment>
           <LoadingBar style={{backgroundColor: '#9c27b0', height: '5px'}} />
-          { loading
-            ? (
-              <main className='app app-container'>
-                <Nav />
+          <main className='app app-container'>
+            <Nav />
+            { notLoggedIn
+              ? (
                 <Switch>
-                  <Route path='/login' component={Login} />
                   <Route exact path ="/" component = {Home}/>
+                  <Route exact path='/login' component={Login} />
                   <Redirect to={{
                     pathname: '/login',
-                    state: { from: this.props.location }
+                    state: { from: this.props.match }
                   }} />
                 </Switch>
-              </main>
-            )
-            : (
-              <main className="app app-container">
-                <Nav />
+              )
+              : (
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <ProtectedRoute path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
                   <ProtectedRoute from='/dashboard' to='/dashboard/unanswered' />
-                  <ProtectedRoute path="/add" component={AddQuestion} />
-                  <Route path="/question/:id" component={QuestionSingle} />
-                  <ProtectedRoute path="/leaderboard" component={LeaderBoard} />
-                  <Route path="/login" component={Login} firstLogin={this.state.firstLogin} />
+                  <ProtectedRoute exact path="/add" component={AddQuestion} />
+                  <ProtectedRoute exact path="/question/:id" component={QuestionSingle} />
+                  <ProtectedRoute exact path="/leaderboard" component={LeaderBoard} />
+                  <Route exact path="/login" component={Login} firstLogin={this.state.firstLogin} />
                   <Route component={NotFound} />
                 </Switch>
-              </main>
-            )
-          }
+              )
+            }
+          </main>
         </Fragment>
       </Router>
     )
@@ -75,7 +72,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null,
+    notLoggedIn: authedUser === null,
     authedUser
   }
 }

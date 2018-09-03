@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect, Link } from 'react-router-dom'
@@ -16,14 +15,13 @@ class Login extends Component {
 		e.preventDefault()
 
 		const { uid } = this.state
-		const { dispatch, history } = this.props
+		const { dispatch } = this.props
 
 		try {
 			dispatch(setAuthedUser(uid))
 			this.setState({
 				loggedIn: true
 			})
-			// history.push( '/dashboard/unanswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
