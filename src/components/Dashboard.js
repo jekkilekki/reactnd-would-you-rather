@@ -24,7 +24,22 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		// const { history } = this.props 
+		const { history } = this.props 
+
+		let pageSubtitle = 'All Questions'
+		switch( history.location.pathname ) {
+			case '/dashboard/unanswered':
+				pageSubtitle = 'Unanswered Questions'
+				break;
+			case '/dashboard/answered':
+				pageSubtitle = 'Answered Questions'
+				break;
+			case '/dashboard/my-questions':
+				pageSubtitle = 'My Questions'
+				break;
+			default:
+				pageSubtitle = 'All Questions'
+		}
 
 		const transitionOptions = {
 			classNames: 'dashboard-list',
@@ -34,7 +49,8 @@ class Dashboard extends Component {
 
 		return (
 			<section className='page-content dashboard'>
-				<h2 className='center'>All Questions</h2>
+				<h2 className='page-title center'>Dashboard</h2>
+				<p className='page-subtitle center'>{pageSubtitle}</p>
 				
 				<DashboardNav />
 

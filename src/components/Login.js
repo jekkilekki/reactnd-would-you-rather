@@ -23,7 +23,7 @@ class Login extends Component {
 			this.setState({
 				loggedIn: true
 			})
-			history.push( '/dashboard/unaswered' )
+			// history.push( '/dashboard/unanswered' )
 		} catch (e) {
 			alert(e.message)
 		} 
@@ -42,10 +42,12 @@ class Login extends Component {
 	render() {
 		const { users, authedUser } = this.props
 		const { uid, selectedUser } = this.state
+		console.log(this.props.location)
+		const { from } = this.props.location.state || { from: { pathname: '/dashboard/unanswered' } }
 
-		// if ( authedUser ) {
-		// 	return <Redirect to='/dashboard/unanswered' />
-		// }
+		if ( authedUser ) {
+			return <Redirect to={from} />
+		}
 
 		return (
 			<section className='page-content login-page'>
