@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Question from './Question'
 import QuestionResult from './QuestionResult'
 
 class QuestionSingle extends Component {
 	render() {
 		const { questions, authedUser, location } = this.props
-		let id = location.pathname.substr(10)
+		let id = location.pathname.substr(11)
+
+		if ( ! questions[id] ) {
+			return <Redirect to="/404" />
+		}
 
 		let answered = questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser)
 

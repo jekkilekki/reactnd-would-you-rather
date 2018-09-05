@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   render() {
-    const { notLoggedIn } = this.props
+    // const { notLoggedIn } = this.props
 
     return (
       <Router>
@@ -39,30 +39,16 @@ class App extends Component {
           <LoadingBar style={{backgroundColor: '#9c27b0', height: '5px'}} />
           <main className='app app-container'>
             <Nav />
-            { notLoggedIn
-              ? (
-                <Switch>
-                  <Route exact path ="/" component = {Home}/>
-                  <Route exact path='/login' component={Login} />
-                  <Redirect to={{
-                    pathname: '/login',
-                    state: { from: this.props.match }
-                  }} />
-                </Switch>
-              )
-              : (
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <ProtectedRoute path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
-                  <ProtectedRoute from='/dashboard' to='/dashboard/unanswered' />
-                  <ProtectedRoute exact path="/add" component={AddQuestion} />
-                  <ProtectedRoute exact path="/question/:id" component={QuestionSingle} />
-                  <ProtectedRoute exact path="/leaderboard" component={LeaderBoard} />
-                  <Route exact path="/login" component={Login} firstLogin={this.state.firstLogin} />
-                  <Route component={NotFound} />
-                </Switch>
-              )
-            }
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <ProtectedRoute path='/dashboard/:type' component={Dashboard} firstLogin={this.state.firstLogin} />
+              <Redirect from='/dashboard' to='/dashboard/unanswered' />
+              <ProtectedRoute exact path="/add" component={AddQuestion} />
+              <ProtectedRoute exact path="/questions/:id" component={QuestionSingle} />
+              <ProtectedRoute exact path="/leaderboard" component={LeaderBoard} />
+              <Route exact path="/login" component={Login} firstLogin={this.state.firstLogin} />
+              <Route component={NotFound} />
+            </Switch>
           </main>
         </Fragment>
       </Router>
