@@ -1,5 +1,7 @@
 # Would You Rather? React App
 
+[View online](https://jekkilekki.com/labs/would-you-rather)
+
 **Would You Rather?** is a React + Redux Polling App that utilizes the [Redux store](https://redux.js.org/basics/store)  to maintain application state. More details about the app's architecture can be found in the [Architecture](#architecture) section of this guide.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br>
@@ -9,6 +11,7 @@ It was built as part of Udacity's [React Nanodegree](https://www.udacity.com/cou
 
 - [Overview](#overview)
 - [Installation](#installation)
+  - [Build](#build)
 - [Application Functionality](#application-functionality)
   - [Home Page](#home-page)
   - [Login Page](#login-page)
@@ -23,6 +26,8 @@ It was built as part of Udacity's [React Nanodegree](https://www.udacity.com/cou
   - [Contributing](#contributing)
 - [License](#license)
 - [Changelog](#changelog)
+  - [`1.0.1` - 2018.11.11](#101---20181111)
+  - [`1.0.0` - 2018.09.02](#100---20180902)
 
 ## Overview
 
@@ -56,6 +61,34 @@ npm start
 The application should then automatically load in your browser at [http://localhost:3000](http://localhost:3000)
 
 For a more complete explanation of each available `npm` script and what it does, see the Create React App's [README file](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#available-scripts).
+
+### Build
+
+To build the application and serve it on the website, the following changes need to be made to serve the app from a subfolder.
+
+#### `package.json`
+
+Added the following line to run this app from a subfolder:
+
+```
+"homepage": "http://website.com/subfolder"
+```
+
+#### `app.js`
+
+In `app.js`, modify the `<BrowserRouter>` component to take the subfolder as a `basename` prop:
+
+```
+<BrowserRouter basename='/subfolder'>
+```
+
+#### `npm run build`
+
+This script is included with the default `react-scripts` when first running `create-react-app`. It minifies the CSS and JS and bundles all the files into a `/build` folder for easy upload. 
+
+#### Upload to Dreamhost
+
+For Dreamhost, just upload everything output from the `/build` folder and you're good to go. (Change the `favicon` too if you want.) Just remember to run this command __*every time*__ you want to update the app online.
 
 ## Application Functionality
 
@@ -256,6 +289,11 @@ The **Would You Rather?** app is licensed under the [MIT open source license](ht
   - [Material Icons](https://materializecss.com/icons.html) (as part of MaterializeCSS)
 
 ## Changelog
+
+### `1.0.1` - 2018.11.11
+ - Build for deployment
+ - Add screenshot for Homepage
+ - Update README
 
 ### `1.0.0` - 2018.09.02 
  - Initial release

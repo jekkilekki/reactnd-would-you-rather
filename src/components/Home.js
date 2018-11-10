@@ -9,6 +9,7 @@ class Home extends Component {
         <section className='page-content home-page'>
           <h1 className='page-title center'>Welcome to <span className='purple-text subtitle center'>Would You Rather?</span></h1>
           <div className='card'>
+            <img src="/img/screenshot.png" />
             <p><strong>Would You Rather?</strong> is a React + Redux Polling App that utilizes the 
               <a href="https://redux.js.org/basics/store">Redux store</a> to maintain application state.
             </p>
